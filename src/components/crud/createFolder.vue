@@ -1,5 +1,4 @@
-<script>
-import router from "../../router"  
+<script> 
 import axios from 'axios'
 
 export default {
@@ -15,7 +14,7 @@ export default {
         createFolder() {
             axios.post('http://localhost:4000/api/v1/createFolder', this.create)
             .then((res) => {
-                router.push('/folders')
+                console.log('Folder Created')
             })
             .catch((err) => {
                 console.log(err)
@@ -41,7 +40,6 @@ export default {
                 <span>Pick a Color: </span>
                 <input type="color" v-model="create.background" required>
             </div>
-            {{ this.create.color }}
             <input type="submit" value="Save">
         </form>
     </div>

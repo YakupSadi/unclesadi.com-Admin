@@ -9,27 +9,24 @@ export default {
         Folder,
         createFolder
     },
-    mounted() {
-        this.isValid(),
-        this.getAllFolder()
-    },
     data() {
         return {
-            folders: null,
+            folders: null
         }
+    },
+    mounted() {
+        this.isValid(),
+        
+        axios.get('http://localhost:4000/api/v1/folder')
+        .then((res) => {
+            this.folders = res.data.data;
+        })
+        .catch((err) => {
+            console.log(err)
+        })
     },
     methods: {
         ...mapMutations(['isValid']),
-
-        getAllFolder() {
-            axios.get('http://localhost:4000/api/v1/folder')
-            .then((res) => {
-                this.folders = res.data.data;
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-        }
     }
 }
 </script>
