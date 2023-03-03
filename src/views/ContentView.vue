@@ -18,10 +18,7 @@ export default {
 <template>
   <main class="main">
     <div class="content">
-      <Folder 
-        v-for="n in 3"
-        :key="n"
-      />
+
     </div>
   </main>
 </template>
