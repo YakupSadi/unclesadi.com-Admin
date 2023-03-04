@@ -12,7 +12,8 @@ export default {
         return {
             update: {
                 title      : this.title,
-                background : this.background
+                background : this.background,
+                token      : localStorage.getItem('token')
             },
         }
     },

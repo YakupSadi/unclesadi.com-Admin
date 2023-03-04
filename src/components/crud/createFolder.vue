@@ -7,7 +7,8 @@ export default {
         return {
             create: {
                 title      : null,
-                background : "#ffffff"
+                background : "#ffffff",
+                token      : localStorage.getItem('token')
             }
         }
     },

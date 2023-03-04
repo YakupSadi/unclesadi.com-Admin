@@ -9,7 +9,7 @@ export default {
         return {
             update: {
                 title : this.title,
-                image : this.image
+                image : `http://localhost:4000/api/v1/file/${this.image}`
             },
         }
     },
@@ -31,7 +31,7 @@ export default {
         </div>
 
         <div class="item">
-            <img :src="`http://localhost:4000/api/v1/file/${this.update.image}`" :alt="update.title">
+            <img :src="update.image" :alt="update.title">
         </div>
 
         <div class="item">
@@ -60,6 +60,7 @@ export default {
     }
     .file > .item > img {
         max-width: 100%;
+        max-height: 4rem;
     }
     .file > .item > input {
         border: 3px solid transparent;
