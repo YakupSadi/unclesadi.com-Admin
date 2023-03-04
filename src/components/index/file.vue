@@ -1,6 +1,4 @@
 <script>
-import axios from 'axios'
-
 export default {
     props: [
         'id',
@@ -15,24 +13,7 @@ export default {
             },
         }
     },
-    mounted() {
-        this.getFile()
-    },
     methods: {
-        getFile(){
-            axios.get(`http://localhost:4000/api/v1/file/${this.update.image}`, { responseType: 'arraybuffer' })
-            .then((res) => {
-                const binaryData = res.data
-                const base64String = btoa(String.fromCharCode(...new Uint8Array(binaryData)))
-                const dataUrl = `data:image/jpeg;base64,${base64String}`
-                
-                this.update.image = dataUrl
-                console.log(dataUrl)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-        },
         deleteFile() {
 
         },
@@ -50,7 +31,7 @@ export default {
         </div>
 
         <div class="item">
-            <img :src="update.image" :alt="update.title">
+            <img :src="`http://localhost:4000/api/v1/file/${this.update.image}`" :alt="update.title">
         </div>
 
         <div class="item">
