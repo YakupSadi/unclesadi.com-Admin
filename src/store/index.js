@@ -4,7 +4,8 @@ import axios from 'axios'
 
 export default createStore({
     state: {
-        createPage : false,
+        folders: null,
+        createPage : false
     },
     mutations: {
         createGlobal(state) {
@@ -31,6 +32,15 @@ export default createStore({
             })
             .catch((err) => {
                 router.push('/login')
+            })
+        },
+        getAllFolder(state) {
+            axios.get('http://localhost:4000/api/v1/folder')
+            .then((res) => {
+                state.folders = res.data.data
+            })
+            .catch((err) => {
+                console.log(err)
             })
         }
     }

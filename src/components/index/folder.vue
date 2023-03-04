@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios'
 import File from './file.vue';
+import store from '../../store'
 
 export default {
     components: {
@@ -14,9 +15,9 @@ export default {
     data() {
         return {
             update: {
-                title : this.title,
-                color : this.background
-            }
+                title      : this.title,
+                background : this.background
+            },
         }
     },
     methods: {
@@ -24,31 +25,34 @@ export default {
             axios.delete(`http://localhost:4000/api/v1/folder/${this.id}`)
             .then((res) => {
                 console.log('Folder Deleted')
+                store.commit('getAllFolder')
             })
             .catch((err) => {
                 console.log(err)
             })
         },
         updateFolder() {
-
+            axios.put(`http://localhost:4000/api/v1/folder/${this.id}`, this.update)
+            .then((res) => {
+                console.log('Folder Updated')
+                store.commit('getAllFolder')
+            })
+            .catch((err) => {
+                console.log(err)
+            })
         }
     }
 }
 </script>
 
 <template>
-    <!-- 
-    <div class="folder" :style="{ backgroundColor: background }">
-        {{ title }}
-    </div>   
-     -->
     <div class="folder">
         <div class="item">
-            <input type="text" :value="this.update.title" required>
+            <input type="text" v-model="update.title" required>
         </div>
 
         <div class="item">
-            <input type="color" :value="this.update.color" required>
+            <input type="color" v-model="update.background" required>
         </div>
 
         <div class="item">

@@ -1,5 +1,4 @@
 <script>
-import axios from 'axios';
 import { mapMutations } from 'vuex'
 import Folder from '../components/index/folder.vue';
 import createFolder from '../components/crud/createFolder.vue';
@@ -9,24 +8,13 @@ export default {
         Folder,
         createFolder
     },
-    data() {
-        return {
-            folders: null
-        }
-    },
     mounted() {
         this.isValid(),
-        
-        axios.get('http://localhost:4000/api/v1/folder')
-        .then((res) => {
-            this.folders = res.data.data;
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+        this.getAllFolder()
     },
     methods: {
         ...mapMutations(['isValid']),
+        ...mapMutations(['getAllFolder']),
     }
 }
 </script>
@@ -55,7 +43,7 @@ export default {
 
         <div class="folder_item">
             <Folder 
-                v-for="(folder, index) in folders"
+                v-for="(folder, index) in $store.state.folders"
                 :key        = "index"
                 :id         = "folder._id"
                 :title      = "folder.title"

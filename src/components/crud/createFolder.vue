@@ -1,5 +1,6 @@
 <script> 
 import axios from 'axios'
+import store from '../../store'
 
 export default {
     data() {
@@ -15,6 +16,7 @@ export default {
             axios.post('http://localhost:4000/api/v1/createFolder', this.create)
             .then((res) => {
                 console.log('Folder Created')
+                store.commit('getAllFolder')
             })
             .catch((err) => {
                 console.log(err)
