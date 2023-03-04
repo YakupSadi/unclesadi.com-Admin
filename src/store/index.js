@@ -4,6 +4,7 @@ import axios from 'axios'
 
 export default createStore({
     state: {
+        files: null,
         folders: null,
         createPage : false
     },
@@ -38,6 +39,15 @@ export default createStore({
             axios.get('http://localhost:4000/api/v1/folder')
             .then((res) => {
                 state.folders = res.data.data
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        },
+        getAllFile(state) {
+            axios.get('http://localhost:4000/api/v1/file')
+            .then((res) => {
+                state.files = res.data.data
             })
             .catch((err) => {
                 console.log(err)

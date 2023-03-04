@@ -1,5 +1,34 @@
-<script setup>
+<script>
+import axios from 'axios'
 
+export default {
+    data() {
+        return {
+            create: {
+                title : null,
+                image : null
+            }
+        }
+    },
+    methods: {
+        createFile() {
+            const formData = new FormData()
+            formData.append('title', this.create.title)
+            formData.append('image', this.create.image)
+
+            axios.post('http://localhost:4000/api/v1/file/createFile', formData)
+            .then((res) => {
+                console.log('File Created')
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        },
+        createImage(e) {
+            this.create.image = e.target.files[0]
+        }
+    }
+}
 </script>
 
 <template>
@@ -12,9 +41,9 @@
             />
         </div>
 
-        <form action="" method="post">
-            <input type="text" placeholder="File Title" required>
-            <input type="file" name="" id="" required>
+        <form @submit.prevent="createFile">
+            <input type="text" placeholder="File Title" v-model="create.title" required>
+            <input type="file" @change="createImage" name="image" required>
             <input type="submit" value="Save">
         </form>
     </div>    

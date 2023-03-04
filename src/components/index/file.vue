@@ -1,30 +1,111 @@
-<script setup>
+<script>
+import axios from 'axios'
 
+export default {
+    props: [
+        'id',
+        'title',
+        'image'
+    ],
+    data() {
+        return {
+            update: {
+                title : this.title,
+                image : this.image
+            },
+        }
+    },
+    mounted() {
+        this.getFile()
+    },
+    methods: {
+        getFile(){
+            axios.get(`http://localhost:4000/api/v1/file/${this.update.image}`, { responseType: 'arraybuffer' })
+            .then((res) => {
+                const binaryData = res.data
+                const base64String = btoa(String.fromCharCode(...new Uint8Array(binaryData)))
+                const dataUrl = `data:image/jpeg;base64,${base64String}`
+                
+                this.update.image = dataUrl
+                console.log(dataUrl)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        },
+        deleteFile() {
+
+        },
+        updateFile() {
+
+        }
+    }
+}
 </script>
 
 <template>
     <div class="file">
-        <RouterLink to="/content/JavaScript">
-            <img src="../../assets/js.png" alt="">
-        </RouterLink>
-    </div>    
+        <div class="item">
+            <input type="text" v-model="update.title" required>
+        </div>
+
+        <div class="item">
+            <img :src="update.image" :alt="update.title">
+        </div>
+
+        <div class="item">
+            <button>
+                <font-awesome-icon icon="fa-solid fa-check" class="icon" @click="updateFile" />
+            </button>
+            <button>
+                <font-awesome-icon icon="fa-solid fa-trash" class="icon" @click="deleteFile" />
+            </button>
+        </div>   
+    </div>      
 </template>
 
 <style scoped>
     .file {
-        height: 6rem;
+        gap: 1rem;
+        color: #fff;
+        display: grid;
+        margin-bottom: 1rem;
+        grid-auto-columns: 1fr;
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .file > .item {
         display: flex;
-        overflow: hidden;
-        border-radius: 3px;
+        align-items: center;
+    }
+    .file > .item > img {
+        max-width: 100%;
+    }
+    .file > .item > input {
+        border: 3px solid transparent;
+    }
+    .file > .item > input:focus {
+        outline: none;
+        border: 3px solid #fff;
+    }
+    .file > .item:nth-child(1) { 
+        font-size: 1.2rem;
+        grid-column: 1 / 3; 
+    }
+    .file > .item:nth-child(2) { 
+        display: flex;
+        grid-column: 3 / 4; 
         align-items: center;
         justify-content: center;
+        border: 2px solid #fff;
     }
-    .file > a {
-        height: 6rem;
+    .file > .item:nth-child(3) {
+        display: flex;
+        grid-column: 4 / 5;
+        justify-content: space-around;
     }
-    .file > a > img {
-        height: 100%;
-        border-radius: 3px;
-        border: 3px solid #fff;
+
+    /**/
+    .fadeOut {
+        display: none;
     }
 </style>

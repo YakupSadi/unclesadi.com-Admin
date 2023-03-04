@@ -1,12 +1,8 @@
 <script>
 import axios from 'axios'
-import File from './file.vue';
 import store from '../../store'
 
 export default {
-    components: {
-        File
-    },
     props: [
         'id',
         'title',

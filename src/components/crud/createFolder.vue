@@ -13,7 +13,7 @@ export default {
     },
     methods: {
         createFolder() {
-            axios.post('http://localhost:4000/api/v1/createFolder', this.create)
+            axios.post('http://localhost:4000/api/v1/folder/createFolder', this.create)
             .then((res) => {
                 console.log('Folder Created')
                 store.commit('getAllFolder')
