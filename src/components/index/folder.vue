@@ -24,8 +24,12 @@ export default {
         deleteFolder() {
             axios.delete(`http://localhost:4000/api/v1/folder/${this.id}`)
             .then((res) => {
+                const data     = store.state.folders
+                const index    = data.findIndex(item => item._id === this.id);
+                const selected = document.querySelectorAll('.folder')[index]
+
+                selected.classList.add('fadeOut')
                 console.log('Folder Deleted')
-                store.commit('getAllFolder')
             })
             .catch((err) => {
                 console.log(err)
@@ -97,5 +101,10 @@ export default {
         display: flex;
         grid-column: 4 / 5;
         justify-content: space-around;
+    }
+
+    /**/
+    .fadeOut {
+        display: none;
     }
 </style>
