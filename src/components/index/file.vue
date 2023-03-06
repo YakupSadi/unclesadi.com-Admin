@@ -51,6 +51,7 @@ export default {
         createImage(e) {
             this.update.image = e.target.files[0]
         }
+        
     }
 }
 </script>
