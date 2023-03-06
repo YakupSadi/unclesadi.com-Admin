@@ -1,4 +1,7 @@
 <script>
+import axios from 'axios'
+import store from '../../store'
+
 export default {
     props: [
         'id',
@@ -15,10 +18,38 @@ export default {
     },
     methods: {
         deleteFile() {
+            axios.delete(`http://localhost:4000/api/v1/file/${this.id}`, {
+                data: {
+                    image: this.image
+                }
+            })
+            .then((res) => {
+                const data     = store.state.files
+                const index    = data.findIndex(item => item._id === this.id);
+                const selected = document.querySelectorAll('.file')[index]
 
+                selected.classList.add('fadeOut')
+                console.log('File Deleted')
+            })
+            .catch((err) => {
+                console.log(err)
+            })
         },
         updateFile() {
+            const formData = new FormData()
+            formData.append('title', this.update.title)
+            formData.append('image', this.update.image)
 
+            axios.post(`http://localhost:4000/api/v1/file/${this.id}`, formData)
+            .then((res) => {
+                console.log('File Updated')
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        },
+        createImage(e) {
+            this.update.image = e.target.files[0]
         }
     }
 }
@@ -31,17 +62,18 @@ export default {
         </div>
 
         <div class="item">
+            <input type="file" @change="createImage" name="re-image" id="img" required>
             <img :src="update.image" :alt="update.title">
         </div>
 
         <div class="item">
-            <button>
+            <button type="submit">
                 <font-awesome-icon icon="fa-solid fa-check" class="icon" @click="updateFile" />
             </button>
             <button>
                 <font-awesome-icon icon="fa-solid fa-trash" class="icon" @click="deleteFile" />
             </button>
-        </div>   
+        </div>
     </div>      
 </template>
 
@@ -84,6 +116,9 @@ export default {
         display: flex;
         grid-column: 4 / 5;
         justify-content: space-around;
+    }
+    #img {
+        
     }
 
     /**/
