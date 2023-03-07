@@ -65,7 +65,7 @@ export default {
         </div>
 
         <div class="item">
-            <input type="file" @change="createImage" name="images" id="img" required>
+            <input type="file" @change="createImage" name="images"  id="img" required>
             <img :src="update.image" :alt="update.title">
         </div>
 
@@ -91,11 +91,14 @@ export default {
     }
     .file > .item {
         display: flex;
+        position: relative;
         align-items: center;
     }
     .file > .item > img {
+        z-index: 1;
         max-width: 100%;
         max-height: 4rem;
+        pointer-events: none;
     }
     .file > .item > input {
         border: 3px solid transparent;
@@ -121,7 +124,7 @@ export default {
         justify-content: space-around;
     }
     #img {
-        
+        position: absolute;
     }
 
     /**/
