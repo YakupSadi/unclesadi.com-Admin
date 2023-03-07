@@ -12,6 +12,7 @@ export default {
         return {
             update: {
                 title : this.title,
+                old   : this.image,
                 image : `http://localhost:4000/api/v1/file/${this.image}`
             },
         }
@@ -39,8 +40,9 @@ export default {
             const formData = new FormData()
             formData.append('title', this.update.title)
             formData.append('image', this.update.image)
+            formData.append('old', this.update.old) 
 
-            axios.post(`http://localhost:4000/api/v1/file/${this.id}`, formData)
+            axios.put(`http://localhost:4000/api/v1/file/${this.id}`, formData)
             .then((res) => {
                 console.log('File Updated')
             })
@@ -63,7 +65,7 @@ export default {
         </div>
 
         <div class="item">
-            <input type="file" @change="createImage" name="re-image" id="img" required>
+            <input type="file" @change="createImage" name="images" id="img" required>
             <img :src="update.image" :alt="update.title">
         </div>
 
