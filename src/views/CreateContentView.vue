@@ -1,39 +1,52 @@
 <script>
 import axios from 'axios'
+import { mapMutations } from 'vuex'
+import Folder from '../components/index/folder.vue'
+
 import EditorJS from '@editorjs/editorjs';
 
 export default {
-    mounted() {
-        this.getAllcontent()
-    },
-    methods: {
-        getAllcontent() {
-            axios.get('http://localhost:4000/api/v1/content')
-            .then((res) => {
-                const content = res.data.data[2].data 
-
-                const newArr = content.blocks.map(obj => obj)
-                const data = {
-                    blocks: newArr
-                }
-
-                window.editor = new EditorJS({
-                    holder: 'editorjs',
-                    data: data,
-                    readOnly: true
-                })
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-        }
+  components: {
+    Folder
+  },
+  data() {
+    return {
+      data: []
     }
+  },
+  mounted() {
+    this.isValid(),
+    this.editor()
+  },
+  methods: {
+    ...mapMutations(['isValid']),
+    editor() {
+      window.editor = new EditorJS({
+        holder: 'editorjs',
+        autofocus: true
+      })
+    },
+    saveEdit() {
+      editor.save().then((outputData) => {
+        axios.post('http://localhost:4000/api/v1/content/createContent', { outputData })
+            .then((res) => {
+                console.log('Content Created')
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+      }).catch((error) => {
+        console.log(error)
+      })
+    }
+  }
 }
 </script>
 
 <template>
   <main class="main">
     <div id="editorjs"></div>
+    <button @click="saveEdit">Save</button>
   </main>
 </template>
 
@@ -44,7 +57,18 @@ export default {
   }
   #editorjs {
     color: #000;
+    margin: 0 auto;
+    max-width: 50rem;
+    padding: .5rem 1rem;
     border: 3px solid #fff;
     background-color: #fff;
+  }
+  .main > button {
+    color: #fff;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    width: fit-content;
+    padding: .5rem 2rem;
+    border: 3px solid #fff;
   }
 </style>

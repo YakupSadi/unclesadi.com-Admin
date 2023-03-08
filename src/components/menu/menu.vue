@@ -6,6 +6,7 @@ import { RouterLink } from 'vue-router'
     <div class="menu">
         <div class="menu_item">
             <RouterLink to="/content">Content</RouterLink>
+            <RouterLink to="/createContent">Create Content</RouterLink>
             <RouterLink to="/">Statistic</RouterLink>
             <RouterLink to="/folders">Folders</RouterLink>
             <RouterLink to="/files">Files</RouterLink>
@@ -18,6 +19,7 @@ import { RouterLink } from 'vue-router'
     .menu {
         bottom: 0;
         width: 100%;
+        z-index: 10;
         position: fixed;
         overflow-y: auto;
         border-style: solid;

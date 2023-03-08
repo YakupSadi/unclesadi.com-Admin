@@ -1,41 +1,28 @@
 <script>
 import axios from 'axios'
 import { mapMutations } from 'vuex'
-import Folder from '../components/index/folder.vue'
-
-import EditorJS from '@editorjs/editorjs';
 
 export default {
-  components: {
-    Folder
-  },
   data() {
     return {
-      data: []
+      titles: null,
+      datas: null
     }
   },
   mounted() {
     this.isValid(),
-    this.editor()
+    this.getAllContent()
   },
   methods: {
     ...mapMutations(['isValid']),
-    editor() {
-      window.editor = new EditorJS({
-        holder: 'editorjs'
+    getAllContent() {
+      axios.get('http://localhost:4000/api/v1/content')
+      .then((res) => {
+        this.titles = res.data.data.map(item => item.title)
+        this.datas = res.data.data.map(item => item.data[0].data)
       })
-    },
-    saveEdit() {
-      editor.save().then((outputData) => {
-        axios.post('http://localhost:4000/api/v1/content/createContent', { outputData })
-            .then((res) => {
-                console.log('Content Created')
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-      }).catch((error) => {
-        console.log(error)
+      .catch((err) => {
+        console.log(err)
       })
     }
   }
@@ -44,8 +31,9 @@ export default {
 
 <template>
   <main class="main">
-    <div id="editorjs"></div>
-    <button @click="saveEdit">Save</button>
+    <p v-for="title in titles">
+      {{ title }}
+    </p>
   </main>
 </template>
 
@@ -54,17 +42,5 @@ export default {
     max-width: 100rem;
     padding: 6rem 2rem 2rem;
   }
-  #editorjs {
-    color: #000;
-    border: 3px solid #fff;
-    background-color: #fff;
-  }
-  .main > button {
-    color: #fff;
-    margin-top: 1rem;
-    font-size: 1.2rem;
-    width: fit-content;
-    padding: .5rem 2rem;
-    border: 3px solid #fff;
-  }
+
 </style>

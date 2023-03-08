@@ -29,11 +29,11 @@ const router = createRouter({
       }
     },
     {
-      path: '/content/:slug',
-      name: 'contentDetail',
-      component: () => import('../views/ContentView.vue'),
+      path: '/content/:id',
+      name: 'detailContent',
+      component: () => import('../views/DetailView.vue'),
       meta: { 
-        title: 'Content Detail' 
+        title: 'Detail Content' 
       }
     },
     {
