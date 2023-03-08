@@ -21,6 +21,14 @@ const router = createRouter({
       }
     },
     {
+      path: '/createContent',
+      name: 'createContent',
+      component: () => import('../views/CreateContentView.vue'),
+      meta: { 
+        title: 'Create Content' 
+      }
+    },
+    {
       path: '/content/:slug',
       name: 'contentDetail',
       component: () => import('../views/ContentView.vue'),
