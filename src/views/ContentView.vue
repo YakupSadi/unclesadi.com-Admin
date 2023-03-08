@@ -3,27 +3,49 @@ import axios from 'axios'
 import { mapMutations } from 'vuex'
 import Folder from '../components/index/folder.vue'
 
+import EditorJS from '@editorjs/editorjs';
+
 export default {
   components: {
     Folder
   },
   data() {
     return {
-      data: null
+      data: []
     }
   },
   mounted() {
-    this.isValid()
+    this.isValid(),
+    this.editor()
   },
   methods: {
     ...mapMutations(['isValid']),
+    editor() {
+      window.editor = new EditorJS({
+        holder: 'editorjs'
+      })
+    },
+    saveEdit() {
+      editor.save().then((outputData) => {
+        axios.post('http://localhost:4000/api/v1/content/createContent', { outputData })
+            .then((res) => {
+                console.log('Content Created')
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+      }).catch((error) => {
+        console.log(error)
+      })
+    }
   }
 }
 </script>
 
 <template>
   <main class="main">
-
+    <div id="editorjs"></div>
+    <button @click="saveEdit">Save</button>
   </main>
 </template>
 
@@ -37,7 +59,7 @@ export default {
     border: 3px solid #fff;
     background-color: #fff;
   }
-  .main > .button > button {
+  .main > button {
     color: #fff;
     margin-top: 1rem;
     font-size: 1.2rem;
