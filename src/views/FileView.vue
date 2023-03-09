@@ -14,7 +14,7 @@ export default {
     },
     methods: {
         ...mapMutations(['isValid']),
-        ...mapMutations(['getAllFile']),
+        ...mapMutations(['getAllFile'])
     }
 }
 </script>
@@ -44,10 +44,11 @@ export default {
         <div class="file_item">
             <File 
                 v-for="(file, index) in $store.state.files"
-                :key   = "index"
-                :id    = "file._id"
-                :title = "file.title"
-                :image = "file.image"
+                :key    = "index"
+                :id     = "file._id"
+                :title  = "file.title"
+                :folder = "file.folder"
+                :image  = "file.image"
             />
         </div>
     </div>
@@ -75,7 +76,7 @@ export default {
         margin-bottom: 1rem;
         grid-auto-columns: 1fr;
         border-bottom: 3px solid #fff;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
     }
     .files > .file_head > .item:nth-child(1) { 
         grid-column: 1 / 3; 

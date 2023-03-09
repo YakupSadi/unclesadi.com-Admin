@@ -30,7 +30,6 @@ export default {
           window.editor = new EditorJS({
             holder: 'editorjs',
             data: data,
-            readOnly: true,
             tools: {
               paragraph: {
                 class: Paragraph,

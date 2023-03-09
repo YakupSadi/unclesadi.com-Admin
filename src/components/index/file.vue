@@ -1,21 +1,27 @@
 <script>
 import axios from 'axios'
 import store from '../../store'
+import { mapMutations } from 'vuex'
 
 export default {
     props: [
         'id',
         'title',
+        'folder',
         'image'
     ],
     data() {
         return {
             update: {
-                title : this.title,
-                old   : this.image,
-                image : `http://localhost:4000/api/v1/file/${this.image}`
+                title  : this.title,
+                old    : this.image,
+                folder : this.folder,
+                image  : `http://localhost:4000/api/v1/file/${this.image}`
             },
         }
+    },
+    mounted() {
+        this.getAllFolder()
     },
     methods: {
         deleteFile() {
@@ -40,6 +46,7 @@ export default {
             const formData = new FormData()
             formData.append('title', this.update.title)
             formData.append('image', this.update.image)
+            formData.append('folder', this.update.folder)
             formData.append('old', this.update.old) 
 
             axios.put(`http://localhost:4000/api/v1/file/${this.id}`, formData)
@@ -52,8 +59,8 @@ export default {
         },
         createImage(e) {
             this.update.image = e.target.files[0]
-        }
-        
+        },
+        ...mapMutations(['getAllFolder'])
     }
 }
 </script>
@@ -65,7 +72,16 @@ export default {
         </div>
 
         <div class="item">
-            <input type="file" @change="createImage" name="images"  id="img" required>
+            <select v-model="update.folder">
+                <option :value="update.folder" selected>{{ update.folder }}</option>
+                <option v-for="(folder, index) in $store.state.folders" :value="folder.title">
+                    {{ folder.title}}
+                </option>
+            </select>
+        </div>
+
+        <div class="item">
+            <input type="file" @change="createImage" name="images" id="img" required>
             <img :src="update.image" :alt="update.title">
         </div>
 
@@ -77,7 +93,7 @@ export default {
                 <font-awesome-icon icon="fa-solid fa-trash" class="icon" @click="deleteFile" />
             </button>
         </div>
-    </div>      
+    </div> 
 </template>
 
 <style scoped>
@@ -124,6 +140,7 @@ export default {
         justify-content: space-around;
     }
     #img {
+        opacity: 0;
         position: absolute;
     }
 
