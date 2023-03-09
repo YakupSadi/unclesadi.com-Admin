@@ -3,7 +3,15 @@ import axios from 'axios'
 import { mapMutations } from 'vuex'
 import Folder from '../components/index/folder.vue'
 
-import EditorJS from '@editorjs/editorjs';
+import EditorJS from '@editorjs/editorjs'
+import Paragraph from '@editorjs/paragraph'
+import List from '@editorjs/list'
+import Underline from '@editorjs/underline'
+import Header from '@editorjs/header'
+import InlineCode from '@editorjs/inline-code'
+import Marker from '@editorjs/marker'
+import CodeTool from '@editorjs/code'
+import RawTool from '@editorjs/raw'
 
 export default {
   components: {
@@ -23,7 +31,33 @@ export default {
     editor() {
       window.editor = new EditorJS({
         holder: 'editorjs',
-        autofocus: true
+        autofocus: true,
+        tools: {
+          paragraph: {
+            class: Paragraph,
+            inlineToolbar: true,
+          },
+          list: {
+            class: List,
+            inlineToolbar: true,
+            config: {
+              defaultStyle: 'ordered'
+            }
+          },
+          underline: Underline,
+          header: {
+            class: Header,
+            config: {
+              placeholder: 'Enter a header',
+              levels: [1, 2, 3, 4],
+              defaultLevel: 1
+            }
+          },
+          inlineCode: InlineCode,
+          Marker: Marker,
+          code: CodeTool,
+          raw: RawTool,
+        }
       })
     },
     saveEdit() {
