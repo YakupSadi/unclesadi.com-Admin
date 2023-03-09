@@ -1,18 +1,32 @@
 <script>
+import axios from 'axios';
+
 export default {
     props: [
         'id',
         'title',
         'content'
-    ]
+    ],
+    mounted() {
+        this.getContent()       
+    },
+    methods: {
+        getContent() {
+            axios.get(`http://localhost:4000/api/v1/content/${this.id}`)
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        }
+    }
 }
 </script>
 
 <template>
     <div class="content">
-        {{ id }}
-        {{ title }}
-        {{ content }}
+        <RouterLink :to="`content/${id}`">{{ title }}</RouterLink>
     </div>
 </template>
 

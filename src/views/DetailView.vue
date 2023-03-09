@@ -1,32 +1,40 @@
 <script>
 import axios from 'axios'
 import EditorJS from '@editorjs/editorjs';
+import Paragraph from '@editorjs/paragraph'
 
 export default {
     mounted() {
         this.getAllcontent()
     },
     methods: {
-        getAllcontent() {
-            axios.get('http://localhost:4000/api/v1/content')
-            .then((res) => {
-                const content = res.data.data[2].data 
+      getAllcontent() {
+        axios.get('http://localhost:4000/api/v1/content/' + this.$route.params.id)
+        .then((res) => {
+          const content = res.data.data.data
+          console.log(content)
 
-                const newArr = content.blocks.map(obj => obj)
-                const data = {
-                    blocks: newArr
-                }
+          const newArr = content.map(obj => obj)
+          const data = {
+            blocks: newArr
+          }
 
-                window.editor = new EditorJS({
-                    holder: 'editorjs',
-                    data: data,
-                    readOnly: true
-                })
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-        }
+          window.editor = new EditorJS({
+            holder: 'editorjs',
+            data: data,
+            readOnly: true,
+            tools: {
+              paragraph: {
+                class: Paragraph,
+                inlineToolbar: true,
+              },
+            }
+          })
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+      }
     }
 }
 </script>
