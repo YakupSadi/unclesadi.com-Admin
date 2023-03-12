@@ -29,18 +29,6 @@ export default {
             </button>
         </div>
 
-        <div class="file_head">
-            <div class="item">
-                <span>Title</span>
-            </div>
-
-            <div class="item">
-                <span>Image</span>
-            </div>
-
-            <div class="item"></div>
-        </div>
-
         <div class="file_item">
             <File 
                 v-for="(file, index) in $store.state.files"
@@ -68,26 +56,5 @@ export default {
         color: #fff;
         padding: .5rem 1rem;
         border: 3px solid #fff;
-    }
-    .files > .file_head {
-        color: #fff;
-        display: grid;
-        font-size: 1.4rem;
-        margin-bottom: 1rem;
-        grid-auto-columns: 1fr;
-        border-bottom: 3px solid #fff;
-        grid-template-columns: repeat(5, 1fr);
-    }
-    .files > .file_head > .item:nth-child(1) { 
-        grid-column: 1 / 3; 
-    }
-    .files > .file_head > .item:nth-child(2) { 
-        display: flex;
-        grid-column: 3 / 4;
-        align-items: center;
-        justify-content: center;
-    }
-    .files > .file_head > .item:nth-child(3) { 
-        grid-column: 4 / 5; 
     }
 </style>

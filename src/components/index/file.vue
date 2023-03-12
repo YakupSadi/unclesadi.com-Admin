@@ -67,81 +67,118 @@ export default {
 
 <template>
     <div class="file">
-        <div class="item">
-            <input type="text" v-model="update.title" required>
+        <div class="file_group">
+            <div class="item">
+                <input type="text" v-model="update.title" required>
+            </div>
+
+            <div class="item">
+                <select v-model="update.folder">
+                    <option :value="update.folder" selected>{{ update.folder }}</option>
+                    <option v-for="(folder, index) in $store.state.folders" :value="folder.title">
+                        {{ folder.title}}
+                    </option>
+                </select>
+            </div>
         </div>
 
-        <div class="item">
-            <select v-model="update.folder">
-                <option :value="update.folder" selected>{{ update.folder }}</option>
-                <option v-for="(folder, index) in $store.state.folders" :value="folder.title">
-                    {{ folder.title}}
-                </option>
-            </select>
-        </div>
+        <div class="file_group">
+            <div class="item">
+                <input type="file" @change="createImage" name="images" id="img" required>
+                <img :src="update.image" :alt="update.title">
+            </div>
 
-        <div class="item">
-            <input type="file" @change="createImage" name="images" id="img" required>
-            <img :src="update.image" :alt="update.title">
-        </div>
-
-        <div class="item">
-            <button type="submit">
-                <font-awesome-icon icon="fa-solid fa-check" class="icon" @click="updateFile" />
-            </button>
-            <button>
-                <font-awesome-icon icon="fa-solid fa-trash" class="icon" @click="deleteFile" />
-            </button>
+            <div class="item">
+                <button type="submit">
+                    <font-awesome-icon icon="fa-solid fa-check" class="icon" @click="updateFile" />
+                </button>
+                <button>
+                    <font-awesome-icon icon="fa-solid fa-trash" class="icon" @click="deleteFile" />
+                </button>
+            </div>
         </div>
     </div> 
 </template>
 
 <style scoped>
     .file {
-        gap: 1rem;
-        color: #fff;
-        display: grid;
-        margin-bottom: 1rem;
-        grid-auto-columns: 1fr;
-        grid-template-columns: repeat(4, 1fr);
+        display: flex;
+        padding-bottom: 1rem;
+        flex-direction: column;
+        border-bottom: 3px solid #fff;
     }
-    .file > .item {
+    .file > .file_group {
+        display: flex;
+        flex-direction: row;
+    }
+    .file > .file_group:nth-child(1) {
+        color: #fff;
+        margin-bottom: 1rem;
+        border-left: 3px solid #fff;
+        border-bottom: 3px solid #fff;
+    }
+    .file > .file_group > .item > input {
+        outline: none;
+        font-size: 1.2rem;
+        padding: .2rem .6rem;
+    }
+    .file > .file_group > .item > input:focus,
+    .file > .file_group > .item > select {
+        outline: none;
+    }
+    .file > .file_group > .item > select {
+        border: none;
+        height: 100%;
+        color: #fff;
+        appearance: none;
+        font-size: 1.2rem;
+        width: fit-content;
+        padding: .2rem .6rem;
+        background-color: transparent;;
+    }
+    .file > .file_group > .item > select > option {
+        background-color: #1E1E1E;
+    }
+    .file > .file_group:nth-child(1) > .item:nth-child(2) {
+        width: 10rem;
+        display: flex;
+        justify-content: center;
+        border-left: 3px solid #fff;
+    }
+
+    .file > .file_group:nth-child(2) {
+        display: flex;
+        justify-content: space-between;
+    }
+    .file > .file_group:nth-child(2) > .item:nth-child(1) {
+        width: 60%;
         display: flex;
         position: relative;
-        align-items: center;
+        justify-content: center;
     }
-    .file > .item > img {
-        z-index: 1;
-        max-width: 100%;
-        max-height: 4rem;
+    .file > .file_group:nth-child(2) > .item:nth-child(1) > input {
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+    .file > .file_group:nth-child(2) > .item:nth-child(1) > img {
+        max-width: 35%;
         pointer-events: none;
     }
-    .file > .item > input {
-        border: 3px solid transparent;
-    }
-    .file > .item > input:focus {
-        outline: none;
-        border: 3px solid #fff;
-    }
-    .file > .item:nth-child(1) { 
-        font-size: 1.2rem;
-        grid-column: 1 / 3; 
-    }
-    .file > .item:nth-child(2) { 
+    .file > .file_group:nth-child(2) > .item:nth-child(2) {
+        width: 40%;
+        color: #fff;
         display: flex;
-        grid-column: 3 / 4; 
         align-items: center;
-        justify-content: center;
-        border: 2px solid #fff;
-    }
-    .file > .item:nth-child(3) {
-        display: flex;
-        grid-column: 4 / 5;
+        flex-direction: row;
         justify-content: space-around;
     }
-    #img {
-        opacity: 0;
-        position: absolute;
+    .file > .file_group:nth-child(2) > .item:nth-child(2) > button { 
+        margin: 0 .5rem;
+        padding: .4rem .6rem;
+        border-radius: 50% 50%;
+        border: 3px solid #fff;
     }
 
     /**/

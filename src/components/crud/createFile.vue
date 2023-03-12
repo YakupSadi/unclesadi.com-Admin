@@ -71,7 +71,7 @@ export default {
         position: absolute;
         flex-direction: column;
         justify-content: center;
-        background-color: rgba(0, 0, 0, 0.337);
+        background-color: rgba(0, 0, 0, 0.736);
     }
     .create_file > .close_icon > .icon {
         float: right;

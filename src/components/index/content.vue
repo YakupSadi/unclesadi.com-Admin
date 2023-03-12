@@ -14,7 +14,7 @@ export default {
         getContent() {
             axios.get(`http://localhost:4000/api/v1/content/${this.id}`)
             .then((res) => {
-                console.log(res)
+                console.log('All Data Fetched')
             })
             .catch((err) => {
                 console.log(err)

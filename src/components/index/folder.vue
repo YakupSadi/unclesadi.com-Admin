@@ -73,7 +73,6 @@ export default {
         color: #fff;
         display: grid;
         margin-bottom: 1rem;
-        grid-auto-columns: 1fr;
         grid-template-columns: repeat(4, 1fr);
     }
     .folder > .item > input {
