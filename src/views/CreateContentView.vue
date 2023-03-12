@@ -88,7 +88,8 @@ export default {
         const postData = {
           title      : this.save.title,
           file       : this.save.file,
-          outputData : outputData
+          outputData : outputData,
+          token      : localStorage.getItem('token')
         }
 
         axios.post('http://localhost:4000/api/v1/content/createContent', postData)

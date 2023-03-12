@@ -33,7 +33,7 @@ export default {
             })
         },
         updateFolder() {
-            axios.put(`http://localhost:4000/api/v1/folder/${this.id}`, this.update)
+            axios.put(`http://localhost:4000/api/v1/folder/${this.id}`, this.update,)
             .then((res) => {
                 console.log('Folder Updated')
                 store.commit('getAllFolder')
@@ -72,7 +72,10 @@ export default {
         gap: 1rem;
         color: #fff;
         display: grid;
-        margin-bottom: 1rem;
+        max-width: 30rem;
+        margin: 0 1rem 1rem;
+        border-right: 3px solid #fff;
+        border-bottom: 3px solid #fff;
         grid-template-columns: repeat(4, 1fr);
     }
     .folder > .item > input {
@@ -102,5 +105,21 @@ export default {
     /**/
     .fadeOut {
         display: none;
+    }
+
+    @media (min-width: 36em) { 
+        .folder {
+            max-width: 14rem;
+        }
+    }
+    @media (min-width: 48em) { 
+        .folder {
+            max-width: 20rem;
+        }
+    }
+    @media (min-width: 62em) { 
+        .folder {
+            max-width: 25rem;
+        }
     }
 </style>

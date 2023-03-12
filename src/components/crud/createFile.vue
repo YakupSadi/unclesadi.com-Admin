@@ -73,6 +73,9 @@ export default {
         justify-content: center;
         background-color: rgba(0, 0, 0, 0.736);
     }
+    .create_file > .close_icon {
+        margin: 0 auto;
+    }
     .create_file > .close_icon > .icon {
         float: right;
         color: #fff;
@@ -82,8 +85,9 @@ export default {
         background-color: #181818;
     }
     .create_file > form {
-        width: 100%;
         display: flex;
+        margin: 0 auto;
+        max-width: 50rem;
         align-items: center;
         flex-direction: column;
     }

@@ -60,6 +60,9 @@ export default {
         justify-content: center;
         background-color: rgba(0, 0, 0, 0.736);
     }
+    .create_folder > .close_icon {
+        margin: 0 auto;
+    }
     .create_folder > .close_icon > .icon {
         float: right;
         color: #fff;
@@ -71,6 +74,8 @@ export default {
     .create_folder > form {
         width: 100%;
         display: flex;
+        margin: 0 auto;
+        max-width: 25rem;
         align-items: center;
         flex-direction: column;
     }

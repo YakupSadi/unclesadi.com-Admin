@@ -13,7 +13,7 @@ export default {
 
 <template>
   <main class="main">
-    Main Page
+
   </main>
 </template>
 

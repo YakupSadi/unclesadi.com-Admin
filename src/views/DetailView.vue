@@ -15,18 +15,29 @@ import ColorPlugin from 'editorjs-text-color-plugin'
 import FontSize from 'editorjs-inline-font-size-tool'
 
 export default {
+  data() {
+    return {
+      save: {
+        title : null,
+        file  : null
+      }
+    }
+  },
   mounted() {
     this.isValid(),
-    this.getAllcontent()
+    this.getContent(),
+    this.getAllFile()
   },
   methods: {
     ...mapMutations(['isValid']),
+    ...mapMutations(['getAllFile']),
 
-    getAllcontent() {
+    getContent() {
       axios.get('http://localhost:4000/api/v1/content/' + this.$route.params.id)
       .then((res) => {
-        const content = res.data.data.data
-        const newArr = content.map(obj => obj)
+        const content   = res.data.data.data
+        this.save.title = res.data.data.title
+        const newArr    = content.map(obj => obj)
 
         const data = {
           blocks: newArr
@@ -89,9 +100,16 @@ export default {
 
     saveEdit() {
       editor.save().then((outputData) => {
-        axios.post('http://localhost:4000/api/v1/content/createContent', { outputData })
+        const postData = {
+          title      : this.save.title,
+          file       : this.save.file,
+          outputData : outputData,
+          token      : localStorage.getItem('token')
+        }
+
+        axios.put(`http://localhost:4000/api/v1/content/${this.$route.params.id}`, postData)
             .then((res) => {
-                console.log('Content Created')
+                console.log('Content Updated')
             })
             .catch((err) => {
                 console.log(err)
@@ -105,7 +123,19 @@ export default {
 </script>
 
 <template>
-  <main class="main">
+  <main class="main">  
+    <div class="title">
+      <input type="text" placeholder="Title" v-model="save.title" required>
+    </div>
+    
+    <div class="select_file">
+      <select v-model="save.file">
+        <option v-for="(file, index) in $store.state.files" :value="file.title">
+          {{ file.title}}
+        </option>
+      </select>
+    </div>
+
     <div class="editor">
       <div id="editorjs"></div>
       <button @click="saveEdit">Save</button>
@@ -115,11 +145,51 @@ export default {
 
 <style scoped>
   .main {
-    max-width: 100rem;
-    padding: 6rem 2rem 2rem;
-  }
-  .editor {
     display: flex;
+    max-width: 100rem;
+    flex-direction: column;
+    padding: 6rem 2rem 2rem;
+    justify-content: center;
+  }
+  .main > .title {
+    display: flex;
+    justify-content: center;
+  }
+  .main > .title > input {
+    outline: none;
+    color: #fff;
+    max-width: 50rem;
+    font-size: 1.2rem;
+    padding: .5rem 1rem;
+    border: 3px solid #fff;
+  }
+  .main > .title > input:focus {
+    outline: none;
+  }
+  .main > .select_file {
+    width: 100%;
+    display: flex;
+    margin-top: 1.7rem;
+    justify-content: center;
+  }
+  .main > .select_file > select {
+    outline: none;
+    color: #fff;
+    appearance: none;
+    font-size: 1.2rem;
+    width: fit-content;
+    padding: .5rem 1rem;
+    border: 3px solid #fff;
+    background-color: transparent;
+  }
+  .main > .select_file > select > option {
+    background-color: #1E1E1E;
+  }
+  .main > .editor {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    margin: 1.7rem 0;
     align-items: center;
     flex-direction: column;
     justify-content: center;
@@ -130,7 +200,7 @@ export default {
     padding: .5rem 2rem;
     background-color: #fff;
   }
-  .editor > button {
+  .main > .editor > button {
     color: #fff;
     margin-top: 1rem;
     font-size: 1.2rem;
