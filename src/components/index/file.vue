@@ -102,6 +102,7 @@ export default {
 
 <style scoped>
     .file {
+        margin: 1rem;
         display: flex;
         padding-bottom: 1rem;
         flex-direction: column;
@@ -140,8 +141,8 @@ export default {
         background-color: #1E1E1E;
     }
     .file > .file_group:nth-child(1) > .item:nth-child(2) {
-        width: 10rem;
         display: flex;
+        width: fit-content;
         justify-content: center;
         border-left: 3px solid #fff;
     }
@@ -151,7 +152,7 @@ export default {
         justify-content: space-between;
     }
     .file > .file_group:nth-child(2) > .item:nth-child(1) {
-        width: 60%;
+        width: 14rem;
         display: flex;
         position: relative;
         justify-content: center;
@@ -163,11 +164,12 @@ export default {
         position: absolute;
     }
     .file > .file_group:nth-child(2) > .item:nth-child(1) > img {
-        max-width: 35%;
+        width: 4rem;
+        height: 4rem;
         pointer-events: none;
     }
     .file > .file_group:nth-child(2) > .item:nth-child(2) {
-        width: 40%;
+        width: 7rem;
         color: #fff;
         display: flex;
         align-items: center;
@@ -175,7 +177,6 @@ export default {
         justify-content: space-around;
     }
     .file > .file_group:nth-child(2) > .item:nth-child(2) > button { 
-        margin: 0 .5rem;
         padding: .4rem .6rem;
         border-radius: 50% 50%;
         border: 3px solid #fff;
@@ -184,5 +185,12 @@ export default {
     /**/
     .fadeOut {
         display: none;
+    }
+
+    /**/
+    @media (min-width: 36em) { 
+        .file {
+            width: 28rem;
+        }
     }
 </style>

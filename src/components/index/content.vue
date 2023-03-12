@@ -1,26 +1,9 @@
 <script>
-import axios from 'axios';
-
 export default {
     props: [
         'id',
         'title',
-        'content'
-    ],
-    mounted() {
-        this.getContent()       
-    },
-    methods: {
-        getContent() {
-            axios.get(`http://localhost:4000/api/v1/content/${this.id}`)
-            .then((res) => {
-                console.log('All Data Fetched')
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-        }
-    }
+    ]
 }
 </script>
 
@@ -32,11 +15,9 @@ export default {
 
 <style scoped>
     .content {
-        gap: 1rem;
         color: #fff;
-        display: grid;
+        font-size: 1.2rem;
         margin-bottom: 1rem;
-        grid-auto-columns: 1fr;
-        grid-template-columns: repeat(4, 1fr);
+        border-bottom: 3px solid #fff;
     }
 </style>

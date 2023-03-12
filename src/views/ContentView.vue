@@ -9,9 +9,8 @@ export default {
   },
   data() {
     return {
-      id      : null,
-      title   : null,
-      content : null
+      id    : null,
+      title : null
     }
   },
   mounted() {
@@ -20,12 +19,12 @@ export default {
   },
   methods: {
     ...mapMutations(['isValid']),
+
     getAllContent() {
       axios.get('http://localhost:4000/api/v1/content')
       .then((res) => {
         this.id      = res.data.data.map(item => item._id)
-        this.title   = res.data.data[0].title
-        this.content = res.data.data[0].data
+        this.title   = res.data.data.map(item => item.title)
       })
       .catch((err) => {
         console.log(err)
@@ -38,12 +37,11 @@ export default {
 <template>
   <main class="main">
     <Content 
-      v-for="(id, index) in id"
-        :key     = "index"
-        :id      = "id"
-        :title   = "title"
-        :content = "content"
-      />
+      v-for="(item, index) in id"
+      :key="index"
+      :id="item"
+      :title="title[index]"
+    />
   </main>
 </template>
 

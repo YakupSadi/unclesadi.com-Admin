@@ -98,7 +98,9 @@ export default {
     .create_file > form > select {
         color: #fff;
         margin: 1rem 0;
+        appearance: none;
         font-size: 1.2rem;
+        width: fit-content;
         padding: .5rem 1rem;
         border: 3px solid #fff;
         background-color: #181818;

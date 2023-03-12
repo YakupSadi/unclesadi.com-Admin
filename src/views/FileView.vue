@@ -57,4 +57,19 @@ export default {
         padding: .5rem 1rem;
         border: 3px solid #fff;
     }
+
+    .files > .file_item {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    /**/
+    @media (min-width: 48em) { 
+        .files > .file_item {
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: center;
+        } 
+    }
 </style>
