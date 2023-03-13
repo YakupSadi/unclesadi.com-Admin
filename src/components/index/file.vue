@@ -1,14 +1,14 @@
 <script>
-import axios from 'axios'
-import store from '../../store'
 import { mapMutations } from 'vuex'
+import axios            from 'axios'
+import store            from '../../store'
 
 export default {
     props: [
         'id',
+        'image',
         'title',
-        'folder',
-        'image'
+        'folder'
     ],
     data() {
         return {
@@ -44,10 +44,10 @@ export default {
         },
         updateFile() {
             const formData = new FormData()
-            formData.append('title', this.update.title)
-            formData.append('image', this.update.image)
-            formData.append('folder', this.update.folder)
-            formData.append('old', this.update.old) 
+            formData.append('old'    , this.update.old) 
+            formData.append('title'  , this.update.title)
+            formData.append('image'  , this.update.image)
+            formData.append('folder' , this.update.folder)
 
             axios.put(`http://localhost:4000/api/v1/file/${this.id}`, formData)
             .then((res) => {

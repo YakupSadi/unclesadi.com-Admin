@@ -52,6 +52,7 @@ import { RouterLink } from 'vue-router'
         background-color: #fff;
     }
 
+    /**/
     @media (min-width: 36em) { 
         .menu {
             width: 25rem;

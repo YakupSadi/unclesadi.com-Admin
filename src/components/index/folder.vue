@@ -107,6 +107,7 @@ export default {
         display: none;
     }
 
+    /**/
     @media (min-width: 36em) { 
         .folder {
             max-width: 14rem;

@@ -1,7 +1,7 @@
 <script>
 import { mapMutations } from 'vuex'
-import Folder from '../components/index/folder.vue';
-import createFolder from '../components/crud/createFolder.vue';
+import Folder           from '../components/index/folder.vue';
+import createFolder     from '../components/crud/createFolder.vue';
 
 export default {
     components: {
@@ -14,7 +14,7 @@ export default {
     },
     methods: {
         ...mapMutations(['isValid']),
-        ...mapMutations(['getAllFolder']),
+        ...mapMutations(['getAllFolder'])
     }
 }
 </script>

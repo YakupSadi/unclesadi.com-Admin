@@ -1,11 +1,11 @@
 import { createStore } from 'vuex'
-import router from "../router" 
-import axios from 'axios'
+import axios           from 'axios'
+import router          from "../router" 
 
 export default createStore({
     state: {
-        files: null,
-        folders: null,
+        files      : null,
+        folders    : null,
         createPage : false
     },
     mutations: {

@@ -1,5 +1,5 @@
 <script>
-import axios from 'axios'
+import axios            from 'axios'
 import { mapMutations } from 'vuex'
 
 export default {
@@ -18,9 +18,9 @@ export default {
     methods: {
         createFile() {
             const formData = new FormData()
-            formData.append('title', this.create.title)
-            formData.append('image', this.create.image)
-            formData.append('folder', this.create.folder)
+            formData.append('title'  , this.create.title)
+            formData.append('image'  , this.create.image)
+            formData.append('folder' , this.create.folder)
 
             axios.post('http://localhost:4000/api/v1/file/createFile', formData)
             .then((res) => {
@@ -50,11 +50,13 @@ export default {
 
         <form @submit.prevent="createFile">
             <input type="text" placeholder="File Title" v-model="create.title" required>
+            
             <select v-model="create.folder">
                 <option v-for="(folder, index) in $store.state.folders" :value="folder.title">
                     {{ folder.title}}
                 </option>
             </select>
+
             <input type="file" @change="createImage" name="image" required>
             <input type="submit" value="Save">
         </form>
@@ -84,6 +86,7 @@ export default {
         margin-bottom: 1rem;
         background-color: #181818;
     }
+
     .create_file > form {
         display: flex;
         margin: 0 auto;
@@ -109,11 +112,13 @@ export default {
         border: 3px solid #fff;
         background-color: #181818;
     }
-    input[type="submit"] {
-        cursor: pointer;
-    }
     .create_file > form > input:focus,
     .create_file > form > select:focus {
         outline: none;
+    }
+
+    /**/
+    input[type="submit"] {
+        cursor: pointer;
     }
 </style>

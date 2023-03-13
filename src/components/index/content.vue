@@ -23,6 +23,7 @@ export default {
 <template>
     <div class="content">
         <RouterLink :to="`content/${id}`">{{ title }}</RouterLink>
+        
         <button>
             <font-awesome-icon icon="fa-solid fa-trash" class="icon" @click="deleteContent" />
         </button>

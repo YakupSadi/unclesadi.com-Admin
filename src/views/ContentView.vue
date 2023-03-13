@@ -1,7 +1,7 @@
 <script>
-import axios from 'axios'
 import { mapMutations } from 'vuex'
-import Content from '../components/index/content.vue'
+import axios            from 'axios'
+import Content          from '../components/index/content.vue'
 
 export default {
   components: {
@@ -23,8 +23,8 @@ export default {
     getAllContent() {
       axios.get('http://localhost:4000/api/v1/content')
       .then((res) => {
-        this.id      = res.data.data.map(item => item._id)
-        this.title   = res.data.data.map(item => item.title)
+        this.id    = res.data.data.map(item => item._id)
+        this.title = res.data.data.map(item => item.title)
       })
       .catch((err) => {
         console.log(err)
@@ -37,10 +37,10 @@ export default {
 <template>
   <main class="main">
     <Content 
-      v-for="(item, index) in id"
-      :key="index"
-      :id="item"
-      :title="title[index]"
+      v-for  ="(item, index) in id"
+      :key   ="index"
+      :id    ="item"
+      :title ="title[index]"
     />
   </main>
 </template>

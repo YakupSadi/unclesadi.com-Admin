@@ -71,6 +71,7 @@ export default {
         margin-bottom: 1rem;
         background-color: #181818;
     }
+
     .create_folder > form {
         width: 100%;
         display: flex;
@@ -94,6 +95,10 @@ export default {
         border: 3px solid #fff;
         background-color: #181818;
     }
+    .create_folder > form > input:focus {
+        outline: none;
+    }
+    
     input[type="color"] {
         width: 2.5rem;
         height: 2.5rem;
@@ -103,8 +108,5 @@ export default {
     }
     input[type="submit"] {
         cursor: pointer;
-    }
-    .create_folder > form > input:focus {
-        outline: none;
     }
 </style>

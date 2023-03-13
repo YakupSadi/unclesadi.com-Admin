@@ -2,10 +2,13 @@
 import Menu from '../menu/menu.vue'
 
 export default {
+    components: {
+        Menu
+    },
     data() {
         return {
-            menu: false,
-            pageWidth: 0
+            menu      : false,
+            pageWidth : 0
         }
     },
     mounted() {
@@ -15,19 +18,16 @@ export default {
     beforeDestroy() {
         window.removeEventListener('resize', this.handleResize);
     },
-    components: {
-        Menu
-    },
     methods: {
         preventDefault(e) {
             e.preventDefault()
         },
         enableScroll() {
-            const body = document.querySelector('body')
+            const body          = document.querySelector('body')
             body.style.overflow = ''
         },
         disableScroll() {
-            const body = document.querySelector('body')
+            const body          = document.querySelector('body')
             body.style.overflow = 'hidden'
         },
         handleResize() {
@@ -91,6 +91,7 @@ export default {
         width: 70%;
         height: 70%;
     }
+
     .header > .menu {
         height: 2.8rem;
     }
@@ -101,7 +102,7 @@ export default {
         font-size: 1.5rem;
     }
 
-
+    /**/
     .transition-enter-active,
     .transition-leave-active {
         transition: .3s;
@@ -112,7 +113,7 @@ export default {
         margin-left: -100vw;
     }
 
-
+    /**/
     @media (min-width: 36em) { 
         .header {
             padding: 0 2rem;
