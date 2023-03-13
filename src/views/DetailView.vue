@@ -126,7 +126,7 @@ export default {
 </script>
 
 <template>
-  <main class="main">  
+  <main class="main">
     <div class="title">
       <input type="text" placeholder="Title" v-model="save.title" required>
     </div>

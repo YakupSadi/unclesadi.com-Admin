@@ -10,6 +10,7 @@ export default {
   data() {
     return {
       id    : null,
+      file  : null,
       title : null
     }
   },
@@ -25,6 +26,7 @@ export default {
       .then((res) => {
         this.id    = res.data.data.map(item => item._id)
         this.title = res.data.data.map(item => item.title)
+        this.file  = res.data.data.map(item => item.file)
       })
       .catch((err) => {
         console.log(err)
@@ -38,9 +40,10 @@ export default {
   <main class="main">
     <Content 
       v-for  ="(item, index) in id"
-      :key   ="index"
-      :id    ="item"
-      :title ="title[index]"
+      :key   = "index"
+      :id    = "item"
+      :file  = "file[index]"
+      :title = "title[index]"
     />
   </main>
 </template>
@@ -48,7 +51,19 @@ export default {
 <style scoped>
   .main {
     color: #fff;
+    display: flex;
     max-width: 100rem;
+    align-items: center;
+    flex-direction: column;
     padding: 6rem 2rem 2rem;
+    justify-content: center;
+  }
+
+  /**/
+  @media (min-width: 36em) { 
+    .main {
+      flex-wrap: wrap;
+      flex-direction: row;
+    }
   }
 </style>

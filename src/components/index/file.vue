@@ -42,6 +42,7 @@ export default {
                 console.log(err)
             })
         },
+
         updateFile() {
             const formData = new FormData()
             formData.append('old'    , this.update.old) 
@@ -57,10 +58,12 @@ export default {
                 console.log(err)
             })
         },
+
         createImage(e) {
             this.update.image = e.target.files[0]
         },
-        ...mapMutations(['getAllFolder'])
+
+        ...mapMutations(['getAllFolder']),
     }
 }
 </script>
