@@ -30,9 +30,11 @@ export default {
                 console.log(err)
             })
         },
+        
         createImage(e) {
             this.create.image = e.target.files[0]
         },
+
         ...mapMutations(['getAllFolder']),
     }
 }

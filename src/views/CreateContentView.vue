@@ -55,8 +55,8 @@ export default {
             class          : Header,
             config: {
               placeholder  : 'Enter a header',
-              levels       : [1, 2, 3, 4],
-              defaultLevel : 1
+              levels       : [2, 3, 4],
+              defaultLevel : 2
             }
           },
 
