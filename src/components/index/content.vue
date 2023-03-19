@@ -7,6 +7,7 @@ export default {
         'file',
         'title',
     ],
+
     methods: {
         deleteContent() {
             axios.delete(`http://localhost:4000/api/v1/content/${this.id}`)
@@ -16,7 +17,7 @@ export default {
             .catch((err) => {
                 console.log(err)
             })
-        },
+        }
     }
 }
 </script>
@@ -54,6 +55,11 @@ export default {
         max-width: 6rem;
         white-space: nowrap;
         text-overflow: ellipsis;
+    }
+
+    /**/
+    .fadeOut {
+        display: none;
     }
 
     /**/

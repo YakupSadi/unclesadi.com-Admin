@@ -132,7 +132,7 @@ export default {
   </main>
 </template>
 
-<style scoped>
+<style>
   .main {
     display: flex;
     max-width: 100rem;
@@ -185,12 +185,6 @@ export default {
     flex-direction: column;
     justify-content: center;
   }
-  #editorjs {
-    width: 90vw;
-    color: #000;
-    padding: .5rem 2rem;
-    background-color: #fff;
-  }
   .main > .editor > button {
     color: #fff;
     margin-top: 1rem;
@@ -198,6 +192,24 @@ export default {
     width: fit-content;
     padding: .5rem 2rem;
     border: 3px solid #fff;
+  }
+
+  /*Editor*/
+  #editorjs {
+    width: 90vw;
+    padding: .5rem 2rem;
+    border: 3px solid #fff;
+  }
+  .codex-editor__redactor {
+    color: #fff;
+  }
+  .icon--toggler-down {
+    display: none;
+  }
+  .ce-inline-toolbar__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
   }
 
   /**/
