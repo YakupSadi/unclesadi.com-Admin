@@ -6,7 +6,6 @@ import EditorJS         from '@editorjs/editorjs'
 import RawTool     from '@editorjs/raw'
 import CodeTool    from '@editorjs/code'
 import List        from '@editorjs/list'
-import Marker      from '@editorjs/marker'
 import Header      from '@editorjs/header'
 import Paragraph   from '@editorjs/paragraph'
 import Underline   from '@editorjs/underline'
@@ -55,7 +54,7 @@ export default {
               class          : List,
               inlineToolbar  : true,
               config: {
-                defaultStyle : 'ordered'
+                defaultStyle : 'unordered'
               }
             },
 
@@ -69,17 +68,17 @@ export default {
             },
 
             Color: {
-              class              : ColorPlugin,
+              class: ColorPlugin,
               config: {
                 colorCollections : ['#EC7878','#9C27B0','#673AB7','#3F51B5','#0070FF','#03A9F4','#00BCD4','#4CAF50','#8BC34A','#CDDC39', '#FFF'],
                 defaultColor     : '#FF1300',
                 type             : 'text', 
-                customPicker     : true
-              }      
+                customPicker     : true  
+              }     
             },
-
+    
             Marker: {
-              class          : ColorPlugin,
+              class: ColorPlugin,
               config: {
                 defaultColor : '#FFBF00',
                 type         : 'marker',
@@ -87,7 +86,6 @@ export default {
               }       
             },
 
-            Marker     : Marker,
             raw        : RawTool,
             code       : CodeTool,
             fontSize   : FontSize,
