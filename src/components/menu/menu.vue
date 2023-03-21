@@ -7,7 +7,6 @@ import { RouterLink } from 'vue-router'
         <div class="menu_item">
             <RouterLink to="/content">Content</RouterLink>
             <RouterLink to="/createContent">Create Content</RouterLink>
-            <RouterLink to="/">Statistic</RouterLink>
             <RouterLink to="/folders">Folders</RouterLink>
             <RouterLink to="/files">Files</RouterLink>
             <button @click="$store.commit('deleteToken')">Log Out</button>

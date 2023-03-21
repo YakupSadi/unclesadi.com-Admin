@@ -227,9 +227,17 @@ export default {
     flex-wrap: wrap;
     flex-direction: row;
   }
+  .simple-image {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .simple-image > input {
+    width: fit-content;
+  }
   .simple-image > img {
-    width: 100%;
-    height: 100%;
+    max-width: fit-content;
   }
 
   /**/

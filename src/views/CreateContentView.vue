@@ -215,6 +215,23 @@ export default {
     flex-wrap: wrap;
     flex-direction: row;
   }
+  .simple-image {
+    width: 100%;
+    display: flex;
+    margin: 1rem 0;
+    max-height: 30rem;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .simple-image > img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .simple-image > input {
+    width: fit-content;
+  }
+
 
   /**/
   @media (min-width: 48em) { 
