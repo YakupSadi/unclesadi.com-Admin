@@ -10,6 +10,7 @@ export default {
         'title',
         'folder'
     ],
+
     data() {
         return {
             update: {
@@ -20,14 +21,21 @@ export default {
             },
         }
     },
+    
     mounted() {
         this.getAllFolder()
     },
+    
     methods: {
         deleteFile() {
-            axios.delete(`http://localhost:4000/api/v1/file/${this.id}`, {
+            axios.delete(`http://localhost:4000/api/v1/file/${this.id}`, 
+            {
                 data: {
                     image: this.image
+                },
+
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             })
             .then((res) => {
@@ -50,7 +58,11 @@ export default {
             formData.append('image'  , this.update.image)
             formData.append('folder' , this.update.folder)
 
-            axios.put(`http://localhost:4000/api/v1/file/${this.id}`, formData)
+            axios.put(`http://localhost:4000/api/v1/file/${this.id}`, formData, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
             .then((res) => {
                 console.log('File Updated')
             })

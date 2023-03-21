@@ -8,10 +8,12 @@ export default {
         File,
         createFile
     },
+
     mounted() {
         this.isValid(),
         this.getAllFile()
     },
+    
     methods: {
         ...mapMutations(['isValid']),
         ...mapMutations(['getAllFile'])

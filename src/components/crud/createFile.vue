@@ -24,7 +24,11 @@ export default {
             formData.append('image'  , this.create.image)
             formData.append('folder' , this.create.folder)
 
-            axios.post('http://localhost:4000/api/v1/file/createFile', formData)
+            axios.post('http://localhost:4000/api/v1/file/createFile', formData, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
             .then((res) => {
                 console.log('File Created')
             })

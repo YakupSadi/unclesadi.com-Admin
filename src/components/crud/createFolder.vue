@@ -7,14 +7,18 @@ export default {
         return {
             create: {
                 title      : null,
-                background : "#ffffff",
-                token      : localStorage.getItem('token')
+                background : "#ffffff"
             }
         }
     },
+
     methods: {
         createFolder() {
-            axios.post('http://localhost:4000/api/v1/folder/createFolder', this.create)
+            axios.post('http://localhost:4000/api/v1/folder/createFolder', this.create, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
             .then((res) => {
                 console.log('Folder Created')
                 store.commit('getAllFolder')
@@ -39,10 +43,12 @@ export default {
 
         <form @submit.prevent="createFolder">
             <input type="text" placeholder="Folder Title" v-model="create.title" required>
+
             <div class="color">
                 <span>Pick a Color: </span>
                 <input type="color" v-model="create.background" required>
             </div>
+            
             <input type="submit" value="Save">
         </form>
     </div>

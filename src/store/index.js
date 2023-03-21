@@ -6,16 +6,21 @@ export default createStore({
     state: {
         files      : null,
         folders    : null,
-        createPage : false
+        createPage : false,
+        token      : localStorage.getItem('token')
     },
+
     mutations: {
         createGlobal(state) {
             state.createPage = !state.createPage
         },
-        deleteToken() {
-            const token = localStorage.getItem('token');
 
-            axios.post('http://localhost:4000/api/v1/logout', { token })
+        deleteToken(state) {
+            axios.post('http://localhost:4000/api/v1/logout', {}, {
+                headers: {
+                    Authorization: `Bearer ${state.token}`
+                }
+            })
             .then((res) => {
                 localStorage.removeItem('token')
                 router.push('/login')
@@ -24,17 +29,7 @@ export default createStore({
                 console.log(err)
             })
         },
-        isValid() {
-            const token = localStorage.getItem('token')
-            
-            axios.post('http://localhost:4000/api/v1/auth', { token })
-            .then((res) => {
-              console.log('Token is Valid')
-            })
-            .catch((err) => {
-                router.push('/login')
-            })
-        },
+        
         getAllFolder(state) {
             axios.get('http://localhost:4000/api/v1/folder')
             .then((res) => {
@@ -44,6 +39,7 @@ export default createStore({
                 console.log(err)
             })
         },
+
         getAllFile(state) {
             axios.get('http://localhost:4000/api/v1/file')
             .then((res) => {
@@ -51,6 +47,20 @@ export default createStore({
             })
             .catch((err) => {
                 console.log(err)
+            })
+        },
+
+        isValid(state) {
+            axios.post('http://localhost:4000/api/v1/auth', {}, { 
+                headers: {
+                    Authorization: `Bearer ${state.token}`
+                }
+            })
+            .then((res) => {
+              console.log('Token is Valid')
+            })
+            .catch((err) => {
+                router.push('/login')
             })
         }
     }

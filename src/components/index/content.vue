@@ -10,7 +10,11 @@ export default {
 
     methods: {
         deleteContent() {
-            axios.delete(`http://localhost:4000/api/v1/content/${this.id}`)
+            axios.delete(`http://localhost:4000/api/v1/content/${this.id}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
             .then((res) => {
                 console.log('Content Deleted')
             })

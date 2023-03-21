@@ -13,15 +13,18 @@ export default {
         return {
             update: {
                 title      : this.title,
-                background : this.background,
-                token      : localStorage.getItem('token')
+                background : this.background
             },
         }
     },
     
     methods: {
         deleteFolder() {
-            axios.delete(`http://localhost:4000/api/v1/folder/${this.id}`)
+            axios.delete(`http://localhost:4000/api/v1/folder/${this.id}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
             .then((res) => {
                 const data     = store.state.folders
                 const index    = data.findIndex(item => item._id === this.id);
@@ -36,7 +39,11 @@ export default {
         },
         
         updateFolder() {
-            axios.put(`http://localhost:4000/api/v1/folder/${this.id}`, this.update,)
+            axios.put(`http://localhost:4000/api/v1/folder/${this.id}`, this.update, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
             .then((res) => {
                 console.log('Folder Updated')
                 store.commit('getAllFolder')

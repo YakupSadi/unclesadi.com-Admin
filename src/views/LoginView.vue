@@ -11,14 +11,17 @@ export default {
             }
         }
     },
+    
     mounted() {
         this.isLog()
     },
+
     methods: {
         isLog() {
             if(localStorage.getItem('token')) { router.push('/') }
             else { router.push('/login') }
         },
+
         sendAdmin() {
             axios.post('http://localhost:4000/api/v1/login', this.login)
             .then((res) => {
