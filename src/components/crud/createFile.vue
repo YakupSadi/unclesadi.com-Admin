@@ -12,9 +12,11 @@ export default {
             }
         }
     },
+
     mounted() {
         this.getAllFolder()
     },
+    
     methods: {
         createFile() {
             const formData = new FormData()

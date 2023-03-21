@@ -41,7 +41,7 @@ import { RouterLink } from 'vue-router'
         background-color: #1E1E1E;
     }
     .menu > .menu_item > button {
-        background-color: red;
+        background-color: #800000;
     }
     
     .menu::-webkit-scrollbar {

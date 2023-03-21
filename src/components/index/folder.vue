@@ -8,6 +8,7 @@ export default {
         'title',
         'background'
     ],
+
     data() {
         return {
             update: {
@@ -17,6 +18,7 @@ export default {
             },
         }
     },
+    
     methods: {
         deleteFolder() {
             axios.delete(`http://localhost:4000/api/v1/folder/${this.id}`)
@@ -32,6 +34,7 @@ export default {
                 console.log(err)
             })
         },
+        
         updateFolder() {
             axios.put(`http://localhost:4000/api/v1/folder/${this.id}`, this.update,)
             .then((res) => {
@@ -72,10 +75,10 @@ export default {
         gap: 1rem;
         color: #fff;
         display: grid;
+        padding: 0 .5rem;
         max-width: 30rem;
         margin: 0 1rem 1rem;
-        border-right: 3px solid #fff;
-        border-bottom: 3px solid #fff;
+        border: 3px solid #fff;
         grid-template-columns: repeat(4, 1fr);
     }
     .folder > .item > input {
@@ -100,6 +103,14 @@ export default {
         display: flex;
         grid-column: 4 / 5;
         justify-content: space-around;
+    }
+    .folder > .item:nth-child(3) > button:nth-child(1) { 
+        padding: 0 .5rem;
+        background-color: green;
+    }
+    .folder > .item:nth-child(3) > button:nth-child(2) { 
+        padding: 0 .5rem;
+        background-color: red;
     }
 
     /**/

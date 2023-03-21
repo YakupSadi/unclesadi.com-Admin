@@ -92,11 +92,11 @@ export default {
             </div>
 
             <div class="item">
-                <button type="submit">
-                    <font-awesome-icon icon="fa-solid fa-check" class="icon" @click="updateFile" />
+                <button>
+                    <font-awesome-icon icon="fa-solid fa-check" @click="updateFile" />
                 </button>
                 <button>
-                    <font-awesome-icon icon="fa-solid fa-trash" class="icon" @click="deleteFile" />
+                    <font-awesome-icon icon="fa-solid fa-trash" @click="deleteFile" />
                 </button>
             </div>
         </div>
@@ -134,6 +134,7 @@ export default {
         border: none;
         height: 100%;
         color: #fff;
+        cursor: pointer;
         appearance: none;
         font-size: 1.2rem;
         width: fit-content;
@@ -180,9 +181,14 @@ export default {
         justify-content: space-around;
     }
     .file > .file_group:nth-child(2) > .item:nth-child(2) > button { 
-        padding: .4rem .6rem;
+        padding: .3rem .6rem;
         border-radius: 50% 50%;
-        border: 3px solid #fff;
+    }
+    .file > .file_group:nth-child(2) > .item:nth-child(2) > button:nth-child(1) { 
+        border: 3px solid #008000;
+    }
+    .file > .file_group:nth-child(2) > .item:nth-child(2) > button:nth-child(2) { 
+        border: 3px solid #ff0000;
     }
 
     /**/

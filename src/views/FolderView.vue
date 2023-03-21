@@ -8,10 +8,12 @@ export default {
         Folder,
         createFolder
     },
+
     mounted() {
         this.isValid(),
         this.getAllFolder()
     },
+    
     methods: {
         ...mapMutations(['isValid']),
         ...mapMutations(['getAllFolder'])
@@ -62,5 +64,12 @@ export default {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
+    }
+
+    /**/
+    @media (min-width: 36em) { 
+        .folders > .create_button {
+            margin-right: 5rem;
+        }
     }
 </style>

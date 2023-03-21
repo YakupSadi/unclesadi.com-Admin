@@ -71,5 +71,8 @@ export default {
             flex-direction: row;
             justify-content: center;
         } 
+        .files > .create_button {
+            margin-right: 5rem;
+        }
     }
 </style>
