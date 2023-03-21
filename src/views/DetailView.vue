@@ -228,6 +228,7 @@ export default {
     flex-direction: row;
   }
   .simple-image {
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -237,7 +238,8 @@ export default {
     width: fit-content;
   }
   .simple-image > img {
-    max-width: fit-content;
+    max-width: 100%;
+    max-height: 30rem;
   }
 
   /**/

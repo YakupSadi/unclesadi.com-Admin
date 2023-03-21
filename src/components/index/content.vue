@@ -58,11 +58,6 @@ export default {
     }
 
     /**/
-    .fadeOut {
-        display: none;
-    }
-
-    /**/
     @media (min-width: 36em) { 
         .content {
             width: 30rem;
