@@ -25,13 +25,13 @@ export default {
             }
         }
     },
-  
+
     mounted() {
         this.isValid(),
         this.getContent(),
         this.getAllFile()
     },
-  
+
     methods: {
         ...mapMutations(['isValid']),
         ...mapMutations(['getAllFile']),
@@ -81,7 +81,7 @@ export default {
                                 customPicker     : true  
                             }     
                         },
-    
+
                         Marker: {
                             class: ColorPlugin,
                             config: {
@@ -116,7 +116,7 @@ export default {
 
                 axios.put(`http://localhost:4000/api/v1/content/${this.$route.params.id}`, postData, {
                     headers: {
-                      Authorization: `Bearer ${localStorage.getItem('token')}`
+                        Authorization: `Bearer ${localStorage.getItem('token')}`
                     }
                 })
                 .then((res) => {
@@ -125,139 +125,146 @@ export default {
                 .catch((err) => {
                     console.log(err)
                 })
-          }).catch((error) => {
-              console.log(error)
-          })
-      }
+            }).catch((error) => {
+                console.log(error)
+            })
+        }
     }
 }
 </script>
 
 <template>
-  <main class="main">
-    <div class="title">
-      <input type="text" placeholder="Title" v-model="save.title" required>
-    </div>
+    <main class="main">
+        <div class="title">
+            <input type="text" placeholder="Title" v-model="save.title" required>
+        </div>
     
-    <div class="select_file">
-      <select v-model="save.file">
-        <option v-for="(file, index) in $store.state.files" :value="file.title">
-          {{ file.title}}
-        </option>
-      </select>
-    </div>
+        <div class="select_file">
+            <select v-model="save.file">
+                <option v-for="(file, index) in $store.state.files" :value="file.title">
+                    {{ file.title}}
+                </option>
+            </select>
+        </div>
 
-    <div class="editor">
-      <div id="editorjs"></div>
-      <button @click="saveEdit">Save</button>
-    </div>
-  </main>
+        <div class="editor">
+            <div id="editorjs"></div>
+            <button @click="saveEdit">Save</button>
+        </div>
+    </main>
 </template>
 
 <style>
-  .main {
-    display: flex;
-    max-width: 100rem;
-    flex-direction: column;
-    padding: 6rem 2rem 2rem;
-    justify-content: center;
-  }
-  .main > .title {
-    display: flex;
-    justify-content: center;
-  }
-  .main > .title > input {
-    outline: none;
-    color: #fff;
-    max-width: 50rem;
-    font-size: 1.2rem;
-    padding: .5rem 1rem;
-    border: 3px solid #fff;
-  }
-  .main > .title > input:focus {
-    outline: none;
-  }
+    .main {
+        display: flex;
+        max-width: 100rem;
+        flex-direction: column;
+        padding: 6rem 2rem 2rem;
+        justify-content: center;
+    }
 
-  .main > .select_file {
-    width: 100%;
-    display: flex;
-    margin-top: 1.7rem;
-    justify-content: center;
-  }
-  .main > .select_file > select {
-    outline: none;
-    color: #fff;
-    appearance: none;
-    font-size: 1.2rem;
-    width: fit-content;
-    padding: .5rem 1rem;
-    border: 3px solid #fff;
-    background-color: transparent;
-  }
-  .main > .select_file > select > option {
-    background-color: #1E1E1E;
-  }
+    .main > .title {
+        display: flex;
+        justify-content: center;
+    }
+    .main > .title > input {
+        outline: none;
+        color: #fff;
+        max-width: 50rem;
+        font-size: 1.2rem;
+        padding: .5rem 1rem;
+        border: 3px solid #fff;
+    }
+    .main > .title > input:focus {
+        outline: none;
+    }
+
+    .main > .select_file {
+        width: 100%;
+        display: flex;
+        margin-top: 1.7rem;
+        justify-content: center;
+    }
+    .main > .select_file > select {
+        outline: none;
+        color: #fff;
+        appearance: none;
+        font-size: 1.2rem;
+        width: fit-content;
+        padding: .5rem 1rem;
+        border: 3px solid #fff;
+        background-color: transparent;
+    }
+    .main > .select_file > select > option {
+        background-color: #1E1E1E;
+    }
   
-  .main > .editor {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    margin: 1.7rem 0;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .main > .editor > button {
-    color: #fff;
-    margin-top: 1rem;
-    font-size: 1.2rem;
-    width: fit-content;
-    padding: .5rem 2rem;
-    border: 3px solid #fff;
-  }
-
-  /*Editor*/
-  #editorjs {
-    width: 90vw;
-    padding: .5rem 2rem;
-    border: 3px solid #fff;
-  }
-  .codex-editor__redactor {
-    color: #fff;
-  }
-  .icon--toggler-down {
-    display: none;
-  }
-  .ce-inline-toolbar__buttons {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-  }
-  .simple-image {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .simple-image > input {
-    width: fit-content;
-  }
-  .simple-image > img {
-    max-width: 100%;
-    max-height: 30rem;
-  }
-
-  /**/
-  @media (min-width: 48em) { 
-    #editorjs {
-      width: 45rem;
+    .main > .editor {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        margin: 1.7rem 0;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
     }
-  }
-
-  @media (min-width: 62em) { 
-    #editorjs {
-      width: 50rem;
+    .main > .editor > button {
+        color: #fff;
+        margin-top: 1rem;
+        font-size: 1.2rem;
+        width: fit-content;
+        padding: .5rem 2rem;
+        border: 3px solid #fff;
     }
-  }
+
+
+    /*Editor*/
+    #editorjs {
+        width: 90vw;
+        padding: .5rem 2rem;
+        border: 3px solid #fff;
+    }
+
+    .codex-editor__redactor {
+        color: #fff;
+    }
+
+    .icon--toggler-down {
+        display: none;
+    }
+
+    .ce-inline-toolbar__buttons {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .simple-image {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .simple-image > input {
+        width: fit-content;
+    }
+    .simple-image > img {
+        max-width: 100%;
+        max-height: 30rem;
+    }
+
+
+    /**/
+    @media (min-width: 48em) { 
+        #editorjs {
+            width: 45rem;
+        }
+    }
+
+    @media (min-width: 62em) { 
+        #editorjs {
+            width: 50rem;
+        }
+    }
 </style>

@@ -1,6 +1,7 @@
 <script>
 import axios  from 'axios'
 import router from "../router"  
+import { mapMutations } from 'vuex'
 
 export default {
     data() {
@@ -11,17 +12,12 @@ export default {
             }
         }
     },
-    
+
     mounted() {
-        this.isLog()
+        this.isValid()
     },
 
     methods: {
-        isLog() {
-            if(localStorage.getItem('token')) { router.push('/') }
-            else { router.push('/login') }
-        },
-
         sendAdmin() {
             axios.post('http://localhost:4000/api/v1/login', this.login)
             .then((res) => {
@@ -31,7 +27,9 @@ export default {
             .catch((err) => {
                 console.log(err)
             })
-        }
+        },
+
+        ...mapMutations(['isValid'])
     }
 }
 </script>
@@ -57,6 +55,7 @@ export default {
         justify-content: center;
         min-height: var(--index-height);
     }
+    
     .index > .form {
         width: 25rem;
     }

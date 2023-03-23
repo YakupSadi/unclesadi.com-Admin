@@ -14,7 +14,6 @@ import ColorPlugin      from 'editorjs-text-color-plugin'
 import FontSize         from 'editorjs-inline-font-size-tool'
 
 import SimpleImage      from '../editorjs/image'
-import SimpleVideo      from '../editorjs/video'
 
 
 export default {
@@ -74,7 +73,7 @@ export default {
                             customPicker     : true  
                         }     
                     },
-    
+
                     Marker: {
                         class  : ColorPlugin,
                         config : {
@@ -85,7 +84,6 @@ export default {
                     },
 
                     image: SimpleImage,
-                    video: SimpleVideo,
 
                     raw: RawTool,
                     code: CodeTool,
@@ -116,7 +114,7 @@ export default {
                     console.log(err)
                 })
             }).catch((error) => {
-              console.log(error)
+                console.log(error)
             })
         }
     }
@@ -126,21 +124,21 @@ export default {
 <template>
     <main class="main">  
         <div class="title">
-        <input type="text" placeholder="Title" v-model="save.title" required>
-    </div>
-    
-      <div class="select_file">
-          <select v-model="save.file">
-              <option v-for="(file, index) in $store.state.files" :value="file.title">
-                  {{ file.title}}
-              </option>
-          </select>
-      </div>
+            <input type="text" placeholder="Title" v-model="save.title" required>
+        </div>
 
-      <div class="editor">
-          <div id="editorjs"></div>
-          <button @click="saveEdit">Save</button>
-      </div>
+        <div class="select_file">
+            <select v-model="save.file">
+                <option v-for="(file, index) in $store.state.files" :value="file.title">
+                    {{ file.title}}
+                </option>
+            </select>
+        </div>
+
+        <div class="editor">
+            <div id="editorjs"></div>
+            <button @click="saveEdit">Save</button>
+        </div>
     </main>
 </template>
 
@@ -152,6 +150,7 @@ export default {
         padding: 6rem 2rem 2rem;
         justify-content: center;
     }
+
     .main > .title {
         display: flex;
         justify-content: center;
@@ -188,6 +187,7 @@ export default {
         background-color: #1E1E1E;
     }
 
+
     .main > .editor {
         width: 100%;
         height: 100%;
@@ -206,23 +206,28 @@ export default {
         border: 3px solid #fff;
     }
 
+
     /*Editor*/
     #editorjs {
         width: 90vw;
         padding: .5rem 2rem;
         border: 3px solid #fff;
     }
+
     .codex-editor__redactor {
         color: #fff;
     }
+    
     .icon--toggler-down {
         display: none;
     }
+    
     .ce-inline-toolbar__buttons {
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
     }
+    
     .simple-image,
     .simple-video  {
         width: 100%;
@@ -239,26 +244,27 @@ export default {
         max-width: 100%;
         max-height: 30rem;
     }
+    
     .simple-video__video {
         max-width: 18rem;
     }
 
 
-      /**/
-      @media (min-width: 36em) { 
-          .simple-video__video {
-              max-width: 30rem;
-          }
-      }
+    /**/
+    @media (min-width: 36em) { 
+        .simple-video__video {
+            max-width: 30rem;
+        }
+    }
 
-      @media (min-width: 48em) { 
-          #editorjs {
-              width: 45rem;
-          }
-          .simple-video__video {
-              max-width: 40rem;
-          }
-      }
+    @media (min-width: 48em) { 
+        #editorjs {
+            width: 45rem;
+        }
+        .simple-video__video {
+            max-width: 40rem;
+        }
+    }
 
     @media (min-width: 62em) { 
         #editorjs {

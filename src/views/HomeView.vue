@@ -5,7 +5,7 @@ export default {
     mounted() {
         this.isValid()
     },
-  
+
     methods: {
         ...mapMutations(['isValid'])
     }

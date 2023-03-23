@@ -50,6 +50,7 @@ export default {
         flex-direction: column;
         padding: 6rem 2rem 2rem;
     }
+
     .files > .create_button {
         margin-bottom: 2rem;
     }
@@ -66,6 +67,7 @@ export default {
         flex-direction: column;
     }
 
+
     /**/
     @media (min-width: 48em) { 
         .files > .file_item {
@@ -73,6 +75,7 @@ export default {
             flex-direction: row;
             justify-content: center;
         } 
+
         .files > .create_button {
             margin-right: 5rem;
         }

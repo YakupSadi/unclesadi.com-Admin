@@ -13,7 +13,7 @@ export default {
         this.isValid(),
         this.getAllFolder()
     },
-    
+
     methods: {
         ...mapMutations(['isValid']),
         ...mapMutations(['getAllFolder'])
@@ -49,6 +49,7 @@ export default {
         flex-direction: column;
         padding: 6rem 2rem 2rem;
     }
+
     .folders > .create_button {
         margin-bottom: 2rem;
     }

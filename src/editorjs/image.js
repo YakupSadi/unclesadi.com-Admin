@@ -1,3 +1,6 @@
+import axios from "axios"
+
+
 class SimpleImage {
     static get toolbox() {
         return {
@@ -8,10 +11,10 @@ class SimpleImage {
 
     constructor({ data, config, api }) {
         this.data   = data
+        this.api    = api
         this.config = {
             readOnly: config.readOnly || false,
         }
-        this.api    = api
     }
 
     render() {
@@ -19,22 +22,36 @@ class SimpleImage {
         container.classList.add('simple-image')
 
         const img = document.createElement('img')
-        img.src   = this.data.url
         img.classList.add('simple-image__img')
+        img.src   = this.data.url
 
         if (!this.config.readOnly) {
             const input  = document.createElement('input')
-            input.type   = 'file'
-            input.accept = 'image/*'
             input.classList.add('simple-image__input')
+            input.type   = 'file'
 
             input.addEventListener('change', (event) => {
                 const file   = event.target.files[0]
                 const reader = new FileReader()
 
+                const formData = new FormData()
+                formData.append('image', file)
+
                 reader.onload = (e) => {
                     this.data.url = e.target.result
                     img.src       = this.data.url
+
+                    axios.post('http://localhost:4000/api/v1/content/img', formData, {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem('token')}`
+                        }
+                    })
+                    .then((res) => {
+                        this.data.url = 'http://localhost:4000/api/v1/file/' + res.data.image
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
                 }
 
                 reader.readAsDataURL(file)

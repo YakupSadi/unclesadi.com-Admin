@@ -6,8 +6,7 @@ export default createStore({
     state: {
         files      : null,
         folders    : null,
-        createPage : false,
-        token      : localStorage.getItem('token')
+        createPage : false
     },
 
     mutations: {
@@ -15,10 +14,10 @@ export default createStore({
             state.createPage = !state.createPage
         },
 
-        deleteToken(state) {
+        deleteToken() {
             axios.post('http://localhost:4000/api/v1/logout', {}, {
                 headers: {
-                    Authorization: `Bearer ${state.token}`
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             })
             .then((res) => {
@@ -50,10 +49,10 @@ export default createStore({
             })
         },
 
-        isValid(state) {
+        isValid() {
             axios.post('http://localhost:4000/api/v1/auth', {}, { 
                 headers: {
-                    Authorization: `Bearer ${state.token}`
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             })
             .then((res) => {
