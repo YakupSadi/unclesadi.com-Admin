@@ -9,7 +9,7 @@ class SimpleImage {
         }
     }
 
-    constructor({ data, config, api }) {
+    constructor({ data, config, api, file }) {
         this.data   = data
         this.api    = api
         this.config = {
@@ -36,12 +36,13 @@ class SimpleImage {
 
                 const formData = new FormData()
                 formData.append('image', file)
+                formData.append('oldImg', this.data.url)
 
                 reader.onload = (e) => {
                     this.data.url = e.target.result
                     img.src       = this.data.url
 
-                    axios.post('http://localhost:4000/api/v1/content/img', formData, {
+                    axios.post('http://localhost:4000/api/v1/content/editorImg', formData, {
                         headers: {
                             Authorization: `Bearer ${localStorage.getItem('token')}`
                         }
@@ -62,6 +63,22 @@ class SimpleImage {
         container.appendChild(img)
 
         return container
+    }
+
+    /**/
+    destroy() {
+        const del = this.data.url
+        axios.post('http://localhost:4000/api/v1/content/deleteImg', { del }, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        .then((res) => {
+            console.log(res)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
     }
 
     save() {
