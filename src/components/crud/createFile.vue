@@ -62,7 +62,7 @@ export default {
         <form @submit.prevent="createFile">
             <input type="text" placeholder="File Title" v-model="create.title" required>
             
-            <select v-model="create.folder">
+            <select v-model="create.folder" required>
                 <option v-for="(folder, index) in $store.state.folders" :value="folder.title">
                     {{ folder.title}}
                 </option>

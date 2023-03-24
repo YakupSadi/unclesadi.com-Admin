@@ -3,7 +3,6 @@ import { mapMutations } from 'vuex'
 import axios            from 'axios'
 import EditorJS         from '@editorjs/editorjs'
 
-import RawTool          from '@editorjs/raw'
 import CodeTool         from '@editorjs/code'
 import List             from '@editorjs/list'
 import Header           from '@editorjs/header'
@@ -93,7 +92,6 @@ export default {
 
                         image: SimpleImage,
 
-                        raw        : RawTool,
                         code       : CodeTool,
                         fontSize   : FontSize,
                         underline  : Underline,
@@ -140,7 +138,7 @@ export default {
         </div>
     
         <div class="select_file">
-            <select v-model="save.file">
+            <select v-model="save.file" required>
                 <option v-for="(file, index) in $store.state.files" :value="file.title">
                     {{ file.title}}
                 </option>
@@ -221,8 +219,16 @@ export default {
     /*Editor*/
     #editorjs {
         width: 90vw;
+        font-size: 1.3rem;
         padding: .5rem 2rem;
         border: 3px solid #fff;
+    }
+
+    .ce-code > textarea {
+        color: #fff;
+        font-size: 1rem;
+        border-color: #1e2128;
+        background-color: #1e2128;
     }
 
     .codex-editor__redactor {
@@ -247,6 +253,7 @@ export default {
         justify-content: center;
     }
     .simple-image > input {
+        font-size: 1rem;
         width: fit-content;
     }
     .simple-image > img {
