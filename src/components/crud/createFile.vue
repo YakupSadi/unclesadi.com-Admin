@@ -1,4 +1,5 @@
 <script>
+import store            from '../../store'
 import axios            from 'axios'
 import { mapMutations } from 'vuex'
 
@@ -30,7 +31,8 @@ export default {
                 }
             })
             .then((res) => {
-                console.log('File Created')
+                this.getAllFile()
+                store.commit('createGlobal')
             })
             .catch((err) => {
                 console.log(err)
@@ -42,6 +44,7 @@ export default {
         },
 
         ...mapMutations(['getAllFolder']),
+        ...mapMutations(['getAllFile']),
     }
 }
 </script>

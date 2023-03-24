@@ -1,6 +1,7 @@
 <script> 
-import axios from 'axios'
-import store from '../../store'
+import store            from '../../store'
+import axios            from 'axios'
+import { mapMutations } from 'vuex'
 
 export default {
     data() {
@@ -20,13 +21,15 @@ export default {
                 }
             })
             .then((res) => {
-                console.log('Folder Created')
-                store.commit('getAllFolder')
+                this.getAllFolder()
+                store.commit('createGlobal')
             })
             .catch((err) => {
                 console.log(err)
             })
-        }
+        },
+
+        ...mapMutations(['getAllFolder'])
     }
 }
 </script>

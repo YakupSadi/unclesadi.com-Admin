@@ -1,6 +1,6 @@
 <script>
-import axios  from 'axios'
-import router from "../router"  
+import axios            from 'axios'
+import router           from '../router'
 import { mapMutations } from 'vuex'
 
 export default {
@@ -25,7 +25,8 @@ export default {
                 router.push('/')
             })
             .catch((err) => {
-                console.log(err)
+                const message = err.response.data.msg
+                console.log(message)
             })
         },
 

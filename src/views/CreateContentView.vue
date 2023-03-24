@@ -1,6 +1,7 @@
 <script>
-import axios            from 'axios'
 import { mapMutations } from 'vuex'
+import axios            from 'axios'
+import router           from '../router'
 import EditorJS         from '@editorjs/editorjs'
 
 import RawTool          from '@editorjs/raw'
@@ -43,21 +44,21 @@ export default {
 
                 tools: {
                     paragraph: {
-                        class         : Paragraph,
+                        class : Paragraph,
                         inlineToolbar : true,
                     },
 
                     list: {
-                        class          : List,
-                        inlineToolbar  : true,
-                        config: {
+                        class : List,
+                        inlineToolbar : true,
+                        config : {
                             defaultStyle : 'unordered'
                         }
                     },
 
                     header: {
-                        class          : Header,
-                        config: {
+                        class  : Header,
+                        config : {
                             placeholder  : 'Enter a header',
                             levels       : [2, 3, 4],
                             defaultLevel : 2
@@ -83,13 +84,13 @@ export default {
                         }       
                     },
 
-                    image: SimpleImage,
+                    raw        : RawTool,
+                    code       : CodeTool,
+                    fontSize   : FontSize,
+                    underline  : Underline,
+                    inlineCode : InlineCode,
 
-                    raw: RawTool,
-                    code: CodeTool,
-                    fontSize: FontSize,
-                    underline : Underline,
-                    inlineCode: InlineCode
+                    image      : SimpleImage
                 }
             })
         },
@@ -108,7 +109,7 @@ export default {
                     }
                 })
                 .then((res) => {
-                    console.log('Content Created')
+                    router.push('/content')
                 })
                 .catch((err) => {
                     console.log(err)
