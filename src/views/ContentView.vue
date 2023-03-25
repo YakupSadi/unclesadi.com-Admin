@@ -12,7 +12,11 @@ export default {
         return {
             id    : null,
             file  : null,
-            title : null
+            title : null,
+
+            query    : '',
+            result   : [],
+            category : null
         }
     },
   
@@ -20,7 +24,23 @@ export default {
         this.isValid(),
         this.getAllContent()
     },
-  
+
+    watch: {
+        query: function() {
+            if(this.query) {
+                axios.get('http://localhost:4000/api/v1/search', { 
+                    params: { word: this.query, filter: this.category }
+                })
+                .then((res) => {
+                    this.result = res.data.results
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+            }
+        }
+    },
+
     methods: {
         ...mapMutations(['isValid']),
 
@@ -43,23 +63,35 @@ export default {
     <main class="main">
         <div class="search">
             <div class="search_input">
-                <input type="text" placeholder="Search Content..." required>
+                <input type="text" placeholder="Search Content..." v-model="query" required>
             </div>
 
             <div class="select_category">
-                <select>
-                    <option value="">All</option>
-                    <option value="">JavaScript</option>
+                <select v-model="category">
+                    <option value="All" selected>All</option>
+                    <option v-for="(file, index) in this.file" :value="file">
+                        {{ file }}
+                    </option>
                 </select>
             </div>
         </div>  
 
         <Content 
-            v-for  ="(item, index) in id"
+            v-for = "(item, index) in id"
+            v-if  = "query === ''"
             :key   = "index"
             :id    = "item"
             :file  = "file[index]"
             :title = "title[index]"
+        />
+
+        <Content 
+            v-for = "(item, index) in result"
+            v-if  = "result.length >= 1 && query != ''"
+            :key   = "index"
+            :id    = "item._id"
+            :file  = "item.file"
+            :title = "item.title"
         />
     </main>
 </template>
