@@ -1,7 +1,7 @@
 <script>
+import { mapMutations } from 'vuex'
 import axios            from 'axios'
 import router           from '../router'
-import { mapMutations } from 'vuex'
 
 export default {
     data() {
@@ -14,6 +14,7 @@ export default {
     },
 
     mounted() {
+        this.log(),
         this.isValid()
     },
 
@@ -28,6 +29,12 @@ export default {
                 const message = err.response.data.msg
                 console.log(message)
             })
+        },
+
+        log() {
+            if(!this.$store.state.logout) {
+                router.push('/')
+            }
         },
 
         ...mapMutations(['isValid'])

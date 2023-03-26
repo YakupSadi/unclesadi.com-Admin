@@ -6,7 +6,8 @@ export default createStore({
     state: {
         files      : null,
         folders    : null,
-        createPage : false
+        logout     : false,
+        createPage : false,
     },
 
     mutations: {
@@ -14,13 +15,14 @@ export default createStore({
             state.createPage = !state.createPage
         },
 
-        deleteToken() {
+        deleteToken(state) {
             axios.post('http://localhost:4000/api/v1/logout', {}, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             })
             .then((res) => {
+                state.logout = true
                 localStorage.removeItem('token')
                 router.push('/login')
             })
@@ -56,7 +58,7 @@ export default createStore({
                 }
             })
             .then((res) => {
-              console.log('Token is Valid')
+                console.log('Token is Valid')
             })
             .catch((err) => {
                 router.push('/login')

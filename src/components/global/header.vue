@@ -85,8 +85,6 @@ export default {
         background-color: #1E1E1E;
         justify-content: space-between;
         border-bottom: 3px solid #fff;
-
-        outline: 1px solid #fff;
     }
     .header > .logo {
         width: 4rem;

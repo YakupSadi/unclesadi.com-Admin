@@ -1,6 +1,7 @@
 <script>
 import { mapMutations } from 'vuex'
 import axios            from 'axios'
+import router           from '../router'
 import EditorJS         from '@editorjs/editorjs'
 
 import CodeTool         from '@editorjs/code'
@@ -101,6 +102,7 @@ export default {
             })
             .catch((error) => {
                 console.log(error)
+                router.push('/404.vue')
             })
         },
 
