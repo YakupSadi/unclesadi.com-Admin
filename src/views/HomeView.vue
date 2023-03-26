@@ -1,15 +1,5 @@
-<script>
-import { mapMutations } from 'vuex'
+<script setup>
 
-export default {
-    mounted() {
-        this.isValid()
-    },
-
-    methods: {
-        ...mapMutations(['isValid'])
-    }
-}
 </script>
 
 <template>

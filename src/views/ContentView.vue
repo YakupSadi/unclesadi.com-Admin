@@ -1,5 +1,4 @@
 <script>
-import { mapMutations } from 'vuex'
 import axios            from 'axios'
 import Content          from '../components/index/content.vue'
 
@@ -21,7 +20,6 @@ export default {
     },
   
     mounted() {
-        this.isValid(),
         this.getAllContent()
     },
 
@@ -42,8 +40,6 @@ export default {
     },
 
     methods: {
-        ...mapMutations(['isValid']),
-
         getAllContent() {
             axios.get('http://localhost:4000/api/v1/content')
             .then((res) => {

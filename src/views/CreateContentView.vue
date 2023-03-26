@@ -27,13 +27,11 @@ export default {
     },
 
     mounted() {
-        this.editor(),
-        this.isValid(),
+        this.editor()
         this.getAllFile()
     },
 
     methods: {
-        ...mapMutations(['isValid']),
         ...mapMutations(['getAllFile']),
 
         editor() {

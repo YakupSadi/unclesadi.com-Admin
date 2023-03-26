@@ -47,20 +47,6 @@ export default createStore({
             .catch((err) => {
                 console.log(err)
             })
-        },
-
-        isValid(state) {
-            axios.post('http://localhost:4000/api/v1/auth', {}, { 
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                }
-            })
-            .then((res) => {
-                console.log('Token is Valid')
-            })
-            .catch((err) => {
-                router.push('/login')
-            })
         }
     }
 })

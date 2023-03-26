@@ -10,12 +10,10 @@ export default {
     },
 
     mounted() {
-        this.isValid(),
         this.getAllFolder()
     },
 
     methods: {
-        ...mapMutations(['isValid']),
         ...mapMutations(['getAllFolder'])
     }
 }
