@@ -6,7 +6,6 @@ export default createStore({
     state: {
         files      : null,
         folders    : null,
-        logout     : false,
         createPage : false,
     },
 
@@ -22,7 +21,6 @@ export default createStore({
                 }
             })
             .then((res) => {
-                state.logout = true
                 localStorage.removeItem('token')
                 router.push('/login')
             })
@@ -51,7 +49,7 @@ export default createStore({
             })
         },
 
-        isValid() {
+        isValid(state) {
             axios.post('http://localhost:4000/api/v1/auth', {}, { 
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`

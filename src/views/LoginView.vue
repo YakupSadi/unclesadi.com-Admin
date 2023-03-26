@@ -1,5 +1,4 @@
 <script>
-import { mapMutations } from 'vuex'
 import axios            from 'axios'
 import router           from '../router'
 
@@ -11,11 +10,6 @@ export default {
                 password : null
             }
         }
-    },
-
-    mounted() {
-        this.log(),
-        this.isValid()
     },
 
     methods: {
@@ -30,14 +24,6 @@ export default {
                 console.log(message)
             })
         },
-
-        log() {
-            if(!this.$store.state.logout) {
-                router.push('/')
-            }
-        },
-
-        ...mapMutations(['isValid'])
     }
 }
 </script>
