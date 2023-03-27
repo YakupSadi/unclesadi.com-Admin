@@ -1,5 +1,4 @@
 <script>
-import store            from '../../store'
 import axios            from 'axios'
 import { mapMutations } from 'vuex'
 
@@ -32,7 +31,8 @@ export default {
             })
             .then((res) => {
                 this.getAllFile()
-                store.commit('createGlobal')
+                this.$store.commit('createGlobal')
+                this.$store.commit('showAlert', { msg: 'File Created', color: '#008000' })
             })
             .catch((err) => {
                 console.log(err)

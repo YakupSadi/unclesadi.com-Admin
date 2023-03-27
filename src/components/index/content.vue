@@ -17,6 +17,7 @@ export default {
             })
             .then((res) => {
                 console.log('Content Deleted')
+                this.$store.commit('showAlert', { msg: 'Content Deleted', color: '#ff0000' })
             })
             .catch((err) => {
                 console.log(err)

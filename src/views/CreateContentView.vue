@@ -1,7 +1,6 @@
 <script>
 import { mapMutations } from 'vuex'
 import axios            from 'axios'
-import router           from '../router'
 import EditorJS         from '@editorjs/editorjs'
 
 import List             from '@editorjs/list'
@@ -105,7 +104,8 @@ export default {
                     }
                 })
                 .then((res) => {
-                    router.push('/content')
+                    this.$store.commit('showAlert', { msg: 'Content Created', color: '#008000' })
+                    this.$router.push('/content')
                 })
                 .catch((err) => {
                     console.log(err)

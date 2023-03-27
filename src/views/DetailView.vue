@@ -1,7 +1,6 @@
 <script>
 import { mapMutations } from 'vuex'
 import axios            from 'axios'
-import router           from '../router'
 import EditorJS         from '@editorjs/editorjs'
 
 import CodeTool         from '@editorjs/code'
@@ -100,7 +99,7 @@ export default {
             })
             .catch((error) => {
                 console.log(error)
-                router.push('/404.vue')
+                this.$router.push('/404.vue')
             })
         },
 
@@ -118,7 +117,9 @@ export default {
                     }
                 })
                 .then((res) => {
+                    this.$store.commit('showAlert', { msg: 'Content Updated', color: '#800080' })
                     console.log('Content Updated')
+                    this.$router.push('/content')
                 })
                 .catch((err) => {
                     console.log(err)

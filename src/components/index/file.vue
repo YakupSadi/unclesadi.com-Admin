@@ -1,7 +1,6 @@
 <script>
 import { mapMutations } from 'vuex'
 import axios            from 'axios'
-import store            from '../../store'
 
 export default {
     props: [
@@ -39,12 +38,13 @@ export default {
                 }
             })
             .then((res) => {
-                const data     = store.state.files
+                const data     = this.$store.state.files
                 const index    = data.findIndex(item => item._id === this.id);
                 const selected = document.querySelectorAll('.file')[index]
 
                 selected.classList.add('fadeOut')
                 console.log('File Deleted')
+                this.$store.commit('showAlert', { msg: 'File Deleted', color: '#ff0000' })
             })
             .catch((err) => {
                 console.log(err)
@@ -65,6 +65,7 @@ export default {
             })
             .then((res) => {
                 console.log('File Updated')
+                this.$store.commit('showAlert', { msg: 'File Updated', color: '#800080' })
             })
             .catch((err) => {
                 console.log(err)

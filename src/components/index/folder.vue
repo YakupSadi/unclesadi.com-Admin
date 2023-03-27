@@ -1,6 +1,5 @@
 <script>
 import axios from 'axios'
-import store from '../../store'
 
 export default {
     props: [
@@ -26,12 +25,13 @@ export default {
                 }
             })
             .then((res) => {
-                const data     = store.state.folders
+                const data     = this.$store.state.folders
                 const index    = data.findIndex(item => item._id === this.id);
                 const selected = document.querySelectorAll('.folder')[index]
 
                 selected.classList.add('fadeOut')
                 console.log('Folder Deleted')
+                this.$store.commit('showAlert', { msg: 'Folder Deleted', color: '#ff0000' })
             })
             .catch((err) => {
                 console.log(err)
@@ -47,6 +47,7 @@ export default {
             .then((res) => {
                 console.log('Folder Updated')
                 store.commit('getAllFolder')
+                this.$store.commit('showAlert', { msg: 'Folder Updated', color: '#800080' })
             })
             .catch((err) => {
                 console.log(err)
