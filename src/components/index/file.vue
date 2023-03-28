@@ -2,6 +2,7 @@
 import { mapMutations } from 'vuex'
 import axios            from 'axios'
 
+
 export default {
     props: [
         'id',
@@ -42,8 +43,8 @@ export default {
                 const index    = data.findIndex(item => item._id === this.id);
                 const selected = document.querySelectorAll('.file')[index]
 
-                selected.classList.add('fadeOut')
                 console.log('File Deleted')
+                selected.classList.add('fadeOut')
                 this.$store.commit('showAlert', { msg: 'File Deleted', color: '#ff0000' })
             })
             .catch((err) => {
@@ -124,6 +125,7 @@ export default {
         flex-direction: column;
         border-bottom: 3px solid #fff;
     }
+
     .file > .file_group {
         display: flex;
         flex-direction: row;
@@ -204,10 +206,12 @@ export default {
         border: 3px solid #ff0000;
     }
 
+
     /**/
     .fadeOut {
         display: none;
     }
+
 
     /**/
     @media (min-width: 36em) { 

@@ -2,6 +2,7 @@
 import axios            from 'axios'
 import { mapMutations } from 'vuex'
 
+
 export default {
     data() {
         return {
@@ -43,8 +44,8 @@ export default {
             this.create.image = e.target.files[0]
         },
 
-        ...mapMutations(['getAllFolder']),
         ...mapMutations(['getAllFile']),
+        ...mapMutations(['getAllFolder']),
     }
 }
 </script>
@@ -86,9 +87,11 @@ export default {
         justify-content: center;
         background-color: rgba(0, 0, 0, 0.736);
     }
+
     .create_file > .close_icon {
         margin: 0 auto;
     }
+
     .create_file > .close_icon > .icon {
         float: right;
         color: #fff;
@@ -127,6 +130,7 @@ export default {
     .create_file > form > select:focus {
         outline: none;
     }
+
 
     /**/
     input[type="submit"] {

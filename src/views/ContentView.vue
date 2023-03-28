@@ -1,6 +1,7 @@
 <script>
-import axios            from 'axios'
-import Content          from '../components/index/content.vue'
+import axios   from 'axios'
+import Content from '../components/index/content.vue'
+
 
 export default {
     components: {
@@ -27,7 +28,10 @@ export default {
         query: function() {
             if(this.query) {
                 axios.get('http://localhost:4000/api/v1/search', { 
-                    params: { word: this.query, filter: this.category }
+                    params: { 
+                        word   : this.query, 
+                        filter : this.category 
+                    }
                 })
                 .then((res) => {
                     this.result = res.data.results
@@ -130,6 +134,7 @@ export default {
         font-size: 1.2rem;
         padding: .5rem 1rem;
     }
+
 
     /**/
     @media (min-width: 36em) { 

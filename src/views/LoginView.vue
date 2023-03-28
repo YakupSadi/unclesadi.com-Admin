@@ -1,6 +1,6 @@
 <script>
-import axios            from 'axios'
-import router           from '../router'
+import axios  from 'axios'
+
 
 export default {
     data() {
@@ -17,7 +17,7 @@ export default {
             axios.post('http://localhost:4000/api/v1/login', this.login)
             .then((res) => {
                 localStorage.setItem('token', res.data.token)
-                router.push('/')
+                this.$router.push('/')
             })
             .catch((err) => {
                 const message = err.response.data.msg

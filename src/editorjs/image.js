@@ -23,12 +23,14 @@ class SimpleImage {
 
         const img = document.createElement('img')
         img.classList.add('simple-image__img')
-        img.src   = this.data.url
+
+        img.src = this.data.url
 
         if (!this.config.readOnly) {
             const input  = document.createElement('input')
             input.classList.add('simple-image__input')
-            input.type   = 'file'
+
+            input.type = 'file'
 
             input.addEventListener('change', (event) => {
                 const file   = event.target.files[0]
@@ -65,7 +67,6 @@ class SimpleImage {
         return container
     }
 
-    /**/
     destroy() {
         const del = this.data.url
         axios.post('http://localhost:4000/api/v1/content/deleteImg', { del }, {

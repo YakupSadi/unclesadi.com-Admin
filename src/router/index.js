@@ -1,10 +1,12 @@
+import axios                              from 'axios'
 import { createRouter, createWebHistory } from 'vue-router'
-import DefaultLayout from '../layouts/DefaultLayout.vue'
-import LoginLayout from '../layouts/LoginLayout.vue'
-import axios from 'axios'
+import LoginLayout                        from '../layouts/LoginLayout.vue'
+import DefaultLayout                      from '../layouts/DefaultLayout.vue'
+
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
+
     routes: [
         {
             path: '/',
@@ -20,7 +22,7 @@ const router = createRouter({
             name: 'content',
             component: () => import('../views/ContentView.vue'),
             meta: { 
-                title: 'Content',
+                title  : 'Content',
                 layout : DefaultLayout
             }
         },
@@ -29,7 +31,7 @@ const router = createRouter({
             name: 'createContent',
             component: () => import('../views/CreateContentView.vue'),
             meta: { 
-                title: 'Create Content',
+                title  : 'Create Content',
                 layout : DefaultLayout
             }
         },
@@ -38,7 +40,7 @@ const router = createRouter({
             name: 'detailContent',
             component: () => import('../views/DetailView.vue'),
             meta: { 
-                title: 'Detail Content',
+                title  : 'Detail Content',
                 layout : DefaultLayout
             }
         },
@@ -47,7 +49,7 @@ const router = createRouter({
             name: 'folders',
             component: () => import('../views/FolderView.vue'),
             meta: { 
-                title: 'Folders',
+                title  : 'Folders',
                 layout : DefaultLayout
             }
         },
@@ -56,7 +58,7 @@ const router = createRouter({
             name: 'files',
             component: () => import('../views/FileView.vue'),
             meta: { 
-                title: 'Files',
+                title  : 'Files',
                 layout : DefaultLayout
             }
         },
@@ -65,7 +67,7 @@ const router = createRouter({
             name: 'login',
             component: () => import('../views/LoginView.vue'),
             meta: { 
-                title: 'Login',
+                title  : 'Login',
                 layout : LoginLayout
             }
         },
@@ -74,7 +76,7 @@ const router = createRouter({
             name: '404',
             component: () => import('../views/404.vue'),
             meta: { 
-                title: '404',
+                title  : '404',
                 layout : LoginLayout
             }
         },

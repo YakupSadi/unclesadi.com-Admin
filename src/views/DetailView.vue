@@ -26,7 +26,7 @@ export default {
     },
 
     mounted() {
-        this.getContent(),
+        this.getContent()
         this.getAllFile()
     },
 

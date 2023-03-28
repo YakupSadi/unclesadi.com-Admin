@@ -1,6 +1,7 @@
 <script>
 import Menu from '../menu/menu.vue'
 
+
 export default {
     components: {
         Menu
@@ -86,6 +87,7 @@ export default {
         justify-content: space-between;
         border-bottom: 3px solid #fff;
     }
+
     .header > .logo {
         width: 4rem;
         height: 4rem;
@@ -108,16 +110,19 @@ export default {
         font-size: 1.5rem;
     }
 
+
     /**/
     .transition-enter-active,
     .transition-leave-active {
         transition: .3s;
         margin-left: 0;
     }
+
     .transition-enter-from,
     .transition-leave-to {
         margin-left: -100vw;
     }
+
 
     /**/
     @media (min-width: 36em) { 
@@ -130,11 +135,13 @@ export default {
             margin-left: -25rem;
         }
     }
+
     @media (min-width: 48em) {
         .header {
             padding: 0 3rem;
         }  
     }
+
     @media (min-width: 62em) {
         .header {
             padding: 0 4rem;

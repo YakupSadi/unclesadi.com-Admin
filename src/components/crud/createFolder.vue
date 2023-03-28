@@ -2,6 +2,7 @@
 import axios            from 'axios'
 import { mapMutations } from 'vuex'
 
+
 export default {
     data() {
         return {
@@ -69,9 +70,11 @@ export default {
         justify-content: center;
         background-color: rgba(0, 0, 0, 0.736);
     }
+
     .create_folder > .close_icon {
         margin: 0 auto;
     }
+
     .create_folder > .close_icon > .icon {
         float: right;
         color: #fff;

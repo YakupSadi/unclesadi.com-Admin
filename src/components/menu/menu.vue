@@ -9,6 +9,7 @@ import { RouterLink } from 'vue-router'
             <RouterLink to="/createContent">Create Content</RouterLink>
             <RouterLink to="/folders">Folders</RouterLink>
             <RouterLink to="/files">Files</RouterLink>
+
             <button @click="$store.commit('deleteToken')">Log Out</button>
         </div>
     </div>
@@ -44,13 +45,16 @@ import { RouterLink } from 'vue-router'
     .menu > .menu_item > button {
         background-color: #800000;
     }
-    
+
+
+    /**/
     .menu::-webkit-scrollbar {
         width: .5em;
     }
     .menu::-webkit-scrollbar-thumb {
         background-color: #fff;
     }
+
 
     /**/
     @media (min-width: 36em) { 

@@ -21,7 +21,7 @@ export default createStore({
             state.alertClr = payload.color
 
             setTimeout(() => {
-                state.alert = false
+                state.alert    = false
                 state.alertMsg = ''
                 state.alertClr = ''
             }, 1000)

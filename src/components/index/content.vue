@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios'
 
+
 export default {
     props: [
         'id',
@@ -72,6 +73,7 @@ export default {
         justify-content: center;
         border-left: 3px solid #fff;
     }
+
 
     /**/
     @media (min-width: 36em) { 

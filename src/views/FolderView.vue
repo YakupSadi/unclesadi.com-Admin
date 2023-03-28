@@ -3,6 +3,7 @@ import { mapMutations } from 'vuex'
 import Folder           from '../components/index/folder.vue';
 import createFolder     from '../components/crud/createFolder.vue';
 
+
 export default {
     components: {
         Folder,
@@ -64,6 +65,7 @@ export default {
         flex-wrap: wrap;
         justify-content: space-around;
     }
+
 
     /**/
     @media (min-width: 36em) { 
