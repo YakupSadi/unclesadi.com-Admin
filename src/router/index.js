@@ -18,6 +18,15 @@ const router = createRouter({
             }
         },
         {
+            path: '/profile',
+            name: 'profile',
+            component: () => import('../views/ProfileView.vue'),
+            meta: { 
+                title  : 'Profile',
+                layout : DefaultLayout
+            }
+        },
+        {
             path: '/content',
             name: 'content',
             component: () => import('../views/ContentView.vue'),

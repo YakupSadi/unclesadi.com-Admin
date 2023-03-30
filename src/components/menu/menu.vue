@@ -5,6 +5,7 @@ import { RouterLink } from 'vue-router'
 <template>
     <div class="menu">
         <div class="menu_item">
+            <RouterLink to="/profile">Profile</RouterLink>
             <RouterLink to="/content">Content</RouterLink>
             <RouterLink to="/createContent">Create Content</RouterLink>
             <RouterLink to="/folders">Folders</RouterLink>
