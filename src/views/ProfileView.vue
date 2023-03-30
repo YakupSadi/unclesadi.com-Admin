@@ -1,5 +1,5 @@
 <script>
-import axios            from 'axios'
+import axios from 'axios'
 
 
 export default {
@@ -15,8 +15,7 @@ export default {
             },
 
             move_email : true,
-            move_pass  : false,
-            check_pass : false,
+            move_pass  : false
         }
     },
 
@@ -89,24 +88,20 @@ export default {
             <button @click="passStatus">Change Password</button>
         </div>
 
-        <Transition name="move_email" v-if="move_email">
-            <div class="form from_email">
-                <form @submit.prevent="changeEmail">
-                    <input type="text" placeholder="Email" v-model="email.new_email" required>
-                    <input type="submit" value="Change Email">
-                </form>
-            </div>
-        </Transition>
+        <div class="form"  v-if="move_email">
+            <form @submit.prevent="changeEmail">
+                <input type="text" placeholder="Email" v-model="email.new_email" required>
+                <input type="submit" value="Change Email">
+            </form>
+        </div>
 
-        <Transition name="move_password" v-if="move_pass">
-            <div class="form form_password">
-                <form @submit.prevent="changePassword">
-                    <input type="password" placeholder="Old Password" name="old_password" v-model="info.old_pass" required>
-                    <input type="password" placeholder="New Password" name="new_password" v-model="info.new_pass" required>
-                    <input type="submit" value="Change Password">
-                </form>
-            </div>
-        </Transition>
+        <div class="form" v-if="move_pass"> 
+            <form @submit.prevent="changePassword">
+                <input type="password" placeholder="Old Password" v-model="info.old_pass" required>
+                <input type="password" placeholder="New Password" v-model="info.new_pass" required>
+                <input type="submit" value="Change Password">
+            </form>
+        </div>
     </main>
 </template>
 
