@@ -1,40 +1,112 @@
 <script>
-import axios  from 'axios'
+import axios            from 'axios'
 
 
 export default {
     data() {
         return {
-            login: {
-                email    : null,
-                password : null
-            }
+            info: {
+                old_pass : null,
+                new_pass : null
+            },
+
+            email : {
+                new_email : null
+            },
+
+            move_email : true,
+            move_pass  : false,
+            check_pass : false,
         }
     },
 
+    mounted() {
+        this.getInfo()
+    },
+
     methods: {
-        sendAdmin() {
-            axios.post('http://localhost:4000/api/v1/', this.login)
+        getInfo() {
+            axios.get('http://localhost:4000/api/v1/email', {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
             .then((res) => {
-                localStorage.setItem('token', res.data.token)
+                this.email.new_email = res.data.info
             })
             .catch((err) => {
                 console.log(err)
             })
         },
+
+        changeEmail() {
+            axios.put('http://localhost:4000/api/v1/email', this.email, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            .then((res) => {
+                this.$router.push('/login')
+                this.$store.commit('deleteToken')
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        },
+
+        changePassword() {
+            axios.put('http://localhost:4000/api/v1/password', this.info, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            .then((res) => {
+                this.$router.push('/login')
+                this.$store.commit('deleteToken')
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        },
+
+        emailStatus() {
+            this.move_email = true
+            this.move_pass  = false
+        },
+
+        passStatus() {
+            this.move_pass  = true
+            this.move_email = false
+        }
     }
 }
 </script>
 
 <template>
     <main class="index">
-        <div class="form">
-            <form @submit.prevent="sendAdmin">
-                <input type="text" placeholder="Email" v-model="login.email" required>
-                <input type="password" placeholder="Password" name="password" v-model="login.password" required>
-                <input type="submit" value="Save Changes">
-            </form>
+        <div class="form_buttons">
+            <button @click="emailStatus">Change Email</button>
+            <button @click="passStatus">Change Password</button>
         </div>
+
+        <Transition name="move_email" v-if="move_email">
+            <div class="form from_email">
+                <form @submit.prevent="changeEmail">
+                    <input type="text" placeholder="Email" v-model="email.new_email" required>
+                    <input type="submit" value="Change Email">
+                </form>
+            </div>
+        </Transition>
+
+        <Transition name="move_password" v-if="move_pass">
+            <div class="form form_password">
+                <form @submit.prevent="changePassword">
+                    <input type="password" placeholder="Old Password" name="old_password" v-model="info.old_pass" required>
+                    <input type="password" placeholder="New Password" name="new_password" v-model="info.new_pass" required>
+                    <input type="submit" value="Change Password">
+                </form>
+            </div>
+        </Transition>
     </main>
 </template>
 
@@ -48,6 +120,22 @@ export default {
         min-height: var(--index-height);
     }
     
+    .index > .form_buttons {
+        top: 5rem;
+        width: 100%;
+        height: 5rem;
+        display: flex;
+        position: absolute;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    .index > .form_buttons > button {
+        height: 3rem;
+        color: #fff;
+        padding: 0 1rem;
+        border: 3px solid #fff;
+    }
+
     .index > .form {
         width: 25rem;
     }

@@ -31,7 +31,7 @@ export default createStore({
             state.createPage = !state.createPage
         },
 
-        deleteToken(state) {
+        deleteToken() {
             axios.post('http://localhost:4000/api/v1/logout', {}, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
