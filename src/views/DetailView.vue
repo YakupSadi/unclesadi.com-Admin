@@ -3,7 +3,6 @@ import { mapMutations } from 'vuex'
 import axios            from 'axios'
 import EditorJS         from '@editorjs/editorjs'
 
-import CodeTool         from '@editorjs/code'
 import List             from '@editorjs/list'
 import Header           from '@editorjs/header'
 import Paragraph        from '@editorjs/paragraph'
@@ -88,9 +87,8 @@ export default {
                             }       
                         },
 
-                        image: SimpleImage,
+                        image      : SimpleImage,
 
-                        code       : CodeTool,
                         fontSize   : FontSize,
                         underline  : Underline,
                         inlineCode : InlineCode,

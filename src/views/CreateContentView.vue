@@ -4,7 +4,6 @@ import axios            from 'axios'
 import EditorJS         from '@editorjs/editorjs'
 
 import List             from '@editorjs/list'
-import CodeTool         from '@editorjs/code'
 import Header           from '@editorjs/header'
 import Paragraph        from '@editorjs/paragraph'
 import Underline        from '@editorjs/underline'
@@ -80,7 +79,6 @@ export default {
                         }       
                     },
 
-                    code       : CodeTool,
                     fontSize   : FontSize,
                     underline  : Underline,
                     inlineCode : InlineCode,
@@ -210,13 +208,6 @@ export default {
         font-size: 1.2rem;
         padding: .5rem 2rem;
         border: 3px solid #00F5FF;
-    }
-
-    .ce-code > textarea {
-        color: #fff;
-        font-size: 1rem;
-        border-color: #1e2128;
-        background-color: #1e2128;
     }
 
     .codex-editor__redactor {

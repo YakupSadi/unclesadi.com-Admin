@@ -7,6 +7,7 @@ export default createStore({
     state: {
         files      : null,
         folders    : null,
+        content    : null,
         createPage : false
     },
 
@@ -14,7 +15,7 @@ export default createStore({
         createGlobal(state) {
             state.createPage = !state.createPage
 
-            const body          = document.querySelector('body')
+            const body = document.querySelector('body')
             if(state.createPage) {
                 body.style.overflow = 'hidden'
             }
@@ -52,6 +53,16 @@ export default createStore({
             axios.get('http://localhost:4000/api/v1/file')
             .then((res) => {
                 state.files = res.data.data
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        },
+
+        getAllContent(state) {
+            axios.get('http://localhost:4000/api/v1/content')
+            .then((res) => {
+                state.content = res.data.data
             })
             .catch((err) => {
                 console.log(err)

@@ -1,6 +1,7 @@
 <script>
-import axios   from 'axios'
-import Content from '../components/index/content.vue'
+import { mapMutations } from 'vuex'
+import axios            from 'axios'
+import Content          from '../components/index/content.vue'
 
 
 export default {
@@ -10,10 +11,6 @@ export default {
 
     data() {
         return {
-            id    : null,
-            file  : null,
-            title : null,
-
             query    : '',
             result   : [],
             category : null
@@ -44,17 +41,7 @@ export default {
     },
 
     methods: {
-        getAllContent() {
-            axios.get('http://localhost:4000/api/v1/content')
-            .then((res) => {
-                this.id    = res.data.data.map(item => item._id)
-                this.title = res.data.data.map(item => item.title)
-                this.file  = res.data.data.map(item => item.file)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-        }
+        ...mapMutations(['getAllContent'])
     }
 }
 </script>
@@ -69,20 +56,20 @@ export default {
             <div class="category">
                 <select v-model="category">
                     <option value="All" selected>All</option>
-                    <option v-for="(file, index) in this.file" :value="file">
-                        {{ file }}
+                    <option v-for="(content, index) in  $store.state.content" :value="content.file">
+                        {{ content.file }}
                     </option>
                 </select>
             </div>
         </div>
 
         <div class="content_list">
-            <Content 
-                v-for = "(item, index) in id"
+            <content 
+                v-for="(content, index) in $store.state.content"
                 :key   = "index"
-                :id    = "item"
-                :file  = "file[index]"
-                :title = "title[index]"
+                :id    = "content._id"
+                :file  = "content.file"
+                :title = "content.title"
             />
         </div>
     </main>
