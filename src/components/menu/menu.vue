@@ -26,7 +26,7 @@ import { RouterLink } from 'vue-router'
         border-style: solid;
         border-color: #fff;
         transition: width .2s;
-        height: calc(100vh - 4rem);
+        height: calc(100vh - 5rem);
         border-width: 0 3px 3px 3px;
         background-color: #10A19D;
     }
@@ -48,7 +48,7 @@ import { RouterLink } from 'vue-router'
     }
 
 
-    /**/
+    /* Scroll */
     .menu::-webkit-scrollbar {
         width: .5em;
     }
@@ -57,7 +57,7 @@ import { RouterLink } from 'vue-router'
     }
 
 
-    /**/
+    /* Media Query */
     @media (min-width: 36em) { 
         .menu {
             width: 25rem;

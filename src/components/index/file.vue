@@ -45,7 +45,6 @@ export default {
 
                 console.log('File Deleted')
                 selected.classList.add('fadeOut')
-                this.$store.commit('showAlert', { msg: 'File Deleted', color: '#ff0000' })
             })
             .catch((err) => {
                 console.log(err)
@@ -66,7 +65,6 @@ export default {
             })
             .then((res) => {
                 console.log('File Updated')
-                this.$store.commit('showAlert', { msg: 'File Updated', color: '#800080' })
             })
             .catch((err) => {
                 console.log(err)
@@ -126,6 +124,7 @@ export default {
         border-bottom: 3px solid #fff;
     }
 
+    /* file_group */
     .file > .file_group {
         display: flex;
         flex-direction: row;
@@ -142,7 +141,7 @@ export default {
         padding: .2rem .6rem;
     }
     .file > .file_group > .item > input:focus,
-    .file > .file_group > .item > select {
+    .file > .file_group > .item > select:focus {
         outline: none;
     }
     .file > .file_group > .item > select {
@@ -207,13 +206,13 @@ export default {
     }
 
 
-    /**/
+    /* Animation */
     .fadeOut {
         display: none;
     }
 
 
-    /**/
+    /* Media Query */
     @media (min-width: 36em) { 
         .file {
             width: 28rem;

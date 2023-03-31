@@ -47,7 +47,7 @@ export default {
     .files {
         display: flex;
         flex-direction: column;
-        padding: 6rem 2rem 2rem;
+        padding: 8rem 2rem 2rem;
     }
 
     .files > .create_button {
@@ -56,8 +56,9 @@ export default {
     .files > .create_button > button {
         float: right;
         color: #fff;
+        font-size: 1.2rem;
         padding: .5rem 1rem;
-        border: 3px solid #fff;
+        border: 3px solid #FFBF00;
     }
 
     .files > .file_item {

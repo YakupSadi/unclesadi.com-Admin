@@ -45,7 +45,7 @@ export default {
         display: flex;
         max-width: 100rem;
         align-items: center;
-        padding: 6rem 2rem 2rem;
+        padding: 8rem 2rem 2rem;
         justify-content: center;
         min-height: var(--index-height);
     }

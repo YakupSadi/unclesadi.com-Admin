@@ -46,19 +46,22 @@ export default {
     .folders {
         display: flex;
         flex-direction: column;
-        padding: 6rem 2rem 2rem;
+        padding: 8rem 2rem 2rem;
     }
 
+    /* create_button */
     .folders > .create_button {
         margin-bottom: 2rem;
     }
     .folders > .create_button > button {
         float: right;
         color: #fff;
+        font-size: 1.2rem;
         padding: .5rem 1rem;
-        border: 3px solid #fff;
+        border: 3px solid #FB2576;
     }
 
+    /* folder_item */
     .folders > .folder_item {
         width: 100%;
         display: flex;
@@ -67,7 +70,7 @@ export default {
     }
 
 
-    /**/
+    /* Media Query */
     @media (min-width: 36em) { 
         .folders > .create_button {
             margin-right: 5rem;

@@ -117,7 +117,6 @@ export default {
                     }
                 })
                 .then((res) => {
-                    this.$store.commit('showAlert', { msg: 'Content Updated', color: '#800080' })
                     console.log('Content Updated')
                     this.$router.push('/content')
                 })
@@ -158,10 +157,11 @@ export default {
         display: flex;
         max-width: 100rem;
         flex-direction: column;
-        padding: 6rem 2rem 2rem;
+        padding: 8rem 2rem 2rem;
         justify-content: center;
     }
 
+    /* title */
     .main > .title {
         display: flex;
         justify-content: center;
@@ -172,12 +172,13 @@ export default {
         max-width: 50rem;
         font-size: 1.2rem;
         padding: .5rem 1rem;
-        border: 3px solid #fff;
+        border: 3px solid #FB2576;
     }
     .main > .title > input:focus {
         outline: none;
     }
 
+    /* select_file */
     .main > .select_file {
         width: 100%;
         display: flex;
@@ -191,13 +192,14 @@ export default {
         font-size: 1.2rem;
         width: fit-content;
         padding: .5rem 1rem;
-        border: 3px solid #fff;
+        border: 3px solid #10A19D;
         background-color: transparent;
     }
     .main > .select_file > select > option {
         background-color: #1E1E1E;
     }
-  
+
+    /* editor */
     .main > .editor {
         width: 100%;
         height: 100%;
@@ -213,16 +215,16 @@ export default {
         font-size: 1.2rem;
         width: fit-content;
         padding: .5rem 2rem;
-        border: 3px solid #fff;
+        border: 3px solid #FFBF00;
     }
 
 
-    /*Editor*/
+    /* editorjs */
     #editorjs {
         width: 90vw;
         font-size: 1.3rem;
         padding: .5rem 2rem;
-        border: 3px solid #fff;
+        border: 3px solid #00F5FF;
     }
 
     .ce-code > textarea {
@@ -263,7 +265,7 @@ export default {
     }
 
 
-    /**/
+    /* Media Query */
     @media (min-width: 48em) { 
         #editorjs {
             width: 45rem;

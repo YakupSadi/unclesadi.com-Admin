@@ -7,26 +7,10 @@ export default createStore({
     state: {
         files      : null,
         folders    : null,
-        createPage : false,
-
-        alert      : false,
-        alertMsg   : '',
-        alertClr   : ''
+        createPage : false
     },
 
     mutations: {
-        showAlert(state, payload) {
-            state.alert    = true
-            state.alertMsg = payload.msg
-            state.alertClr = payload.color
-
-            setTimeout(() => {
-                state.alert    = false
-                state.alertMsg = ''
-                state.alertClr = ''
-            }, 1000)
-        },
-
         createGlobal(state) {
             state.createPage = !state.createPage
         },

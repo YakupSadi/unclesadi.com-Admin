@@ -5,7 +5,6 @@ import axios from 'axios'
 export default {
     props: [
         'id',
-        'file',
         'title',
     ],
 
@@ -18,7 +17,6 @@ export default {
             })
             .then((res) => {
                 console.log('Content Deleted')
-                this.$store.commit('showAlert', { msg: 'Content Deleted', color: '#ff0000' })
             })
             .catch((err) => {
                 console.log(err)
@@ -30,61 +28,57 @@ export default {
 
 <template>
     <div class="content">
-        <RouterLink :to="`content/${id}`">{{ title }}</RouterLink>
-        
-        <span>{{ file }}</span>
+        <RouterLink :to="`content/${id}`">
+            {{ title }}
+        </RouterLink>
 
         <button>
-            <font-awesome-icon icon="fa-solid fa-trash" @click="deleteContent" />
+            <font-awesome-icon 
+                icon="fa-solid fa-trash" 
+                @click="deleteContent" 
+            />
         </button>
     </div>
 </template>
 
 <style scoped>
     .content {
-        width: 19rem;
-        margin: 1rem;
+        width: 100%;
         color: #fff;
         display: flex;
-        font-size: 1.2rem;
+        padding: .5rem;
+        margin: 1rem 0 0;
+        align-items: center;
+        border-radius: .2rem;
+        transition: width .2s;
         border: 3px solid #fff;
-        padding: .5rem 0 .5rem 1rem;
         justify-content: space-between;
     }
     .content > a {
-        width: 8rem;
+        width: 100%;
         overflow: hidden;
+        font-size: 1.5rem;
+        margin-right: 1rem;
         white-space: nowrap;
+        padding: .2rem .5rem;
+        border-radius: .2rem;
         text-overflow: ellipsis;
-        border-right: 3px solid #ffffff6c;
-    }
-    .content > span {
-        width: 5rem;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+        background-color: #24315e;
     }
     .content > button {
-        width: 3rem;
-        height: 2rem;
-        display: flex;
-        color: #ff0000;
-        align-items: center;
-        justify-content: center;
-        border-left: 3px solid #fff;
+        font-size: 1.5rem;
+        height: fit-content;
+        padding: .3rem .7rem;
+        border-radius: .2rem;
+        background-color: #dc143c;
     }
 
 
-    /**/
+    /* Media Query */
     @media (min-width: 36em) { 
         .content {
-            width: 30rem;
-        }
-        .content > a {
-            width: 14rem;
-        }
-        .content > span {
-            width: 10rem;
+            width: 35rem;
+            margin: 1rem 1rem 0;
         }
     }
 </style>

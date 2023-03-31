@@ -64,7 +64,11 @@ export default {
 
         <div class="menu_icon">
             <button>
-                <font-awesome-icon icon="fa-solid fa-bars" class="icon" @click="showMenu"/>
+                <font-awesome-icon
+                    icon="fa-solid fa-bars" 
+                    @click="showMenu"
+                    class="icon" 
+                />
             </button>
         </div>
     </header>
@@ -78,7 +82,7 @@ export default {
     .header {
         z-index: 2;
         width: 100%;
-        height: 4rem;
+        height: 5rem;
         display: flex;
         padding: 0 1rem;
         position: fixed;
@@ -88,30 +92,29 @@ export default {
         border-bottom: 3px solid #fff;
     }
 
+    /* logo */
     .header > .logo {
         width: 4rem;
-        height: 4rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
     .header > .logo > a > img {
-        width: 70%;
-        height: 70%;
+        width: 100%;
+        height: 100%;
     }
 
-    .header > .menu {
-        height: 2.8rem;
+    /* button */
+    .header > .menu_icon > button {
+        display: flex;
+        align-items: center;
     }
     .header > .menu_icon > button > .icon {
         padding: 10px;
         color: #fff;
         cursor: pointer;
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
 
 
-    /**/
+    /* Transition */
     .transition-enter-active,
     .transition-leave-active {
         transition: .3s;
@@ -124,7 +127,7 @@ export default {
     }
 
 
-    /**/
+    /* Media Query */
     @media (min-width: 36em) { 
         .header {
             padding: 0 2rem;

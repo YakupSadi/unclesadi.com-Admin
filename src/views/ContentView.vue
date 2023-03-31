@@ -7,7 +7,7 @@ export default {
     components: {
         Content
     },
-  
+
     data() {
         return {
             id    : null,
@@ -19,7 +19,7 @@ export default {
             category : null
         }
     },
-  
+
     mounted() {
         this.getAllContent()
     },
@@ -62,11 +62,11 @@ export default {
 <template>
     <main class="main">
         <div class="search">
-            <div class="search_input">
+            <div class="search_bar">
                 <input type="text" placeholder="Search Content..." v-model="query" required>
             </div>
 
-            <div class="select_category">
+            <div class="category">
                 <select v-model="category">
                     <option value="All" selected>All</option>
                     <option v-for="(file, index) in this.file" :value="file">
@@ -74,73 +74,75 @@ export default {
                     </option>
                 </select>
             </div>
-        </div>  
+        </div>
 
-        <Content 
-            v-for = "(item, index) in id"
-            v-if  = "query === ''"
-            :key   = "index"
-            :id    = "item"
-            :file  = "file[index]"
-            :title = "title[index]"
-        />
-
-        <Content 
-            v-for = "(item, index) in result"
-            v-if  = "result.length >= 1 && query != ''"
-            :key   = "index"
-            :id    = "item._id"
-            :file  = "item.file"
-            :title = "item.title"
-        />
+        <div class="content_list">
+            <Content 
+                v-for = "(item, index) in id"
+                :key   = "index"
+                :id    = "item"
+                :file  = "file[index]"
+                :title = "title[index]"
+            />
+        </div>
     </main>
 </template>
 
 <style scoped>
     .main {
-        color: #fff;
         display: flex;
         max-width: 100rem;
-        align-items: center;
         flex-direction: column;
-        padding: 6rem 2rem 2rem;
-        justify-content: center;
+        padding: 8rem 2rem 2rem;
     }
 
+    /* search */
     .main > .search {
         width: 100%;
-        display: flex;
-        margin-bottom: 1rem;
-        justify-content: center;
+        margin: 0 auto;
     }
 
-    .main > .search > .search_input {
-        width: 40rem;
-        border-left: 3px solid #fff;
+    /* search_bar */
+    .main > .search > .search_bar {
+        color: #fff;
+        font-size: 1.5rem;
+        border-bottom: 3px solid #fed83a;
     }
-    .main > .search > .search_input > input {
-        font-size: 1.2rem;
+    .main > .search > .search_bar > input {
         padding: .5rem 1rem;
     }
-    .main > .search > .search_input > input:focus,
-    .main > .search > .select_category > select:focus {
+    .main > .search > .search_bar > input:focus,
+    .main > .search > .category > select:focus {
         outline: none;
     }
 
-    .main > .search > .select_category > select {
-        height: 100%;
-        width: fit-content;
+    /* category */
+    .main > .search > .category {
+        float: right;
+    }
+    .main > .search > .category > select {
+        display: block;
         appearance: none;
+        margin-top: 1rem;
         font-size: 1.2rem;
-        padding: .5rem 1rem;
+        width: fit-content;
+        border-radius: 3px;
+        padding: .5rem 1.5rem;
+    }
+
+    /* content_list */
+    .content_list {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
     }
 
 
-    /**/
+    /* Media Query */
     @media (min-width: 36em) { 
-        .main {
-            flex-wrap: wrap;
-            flex-direction: row;
+        .main > .search {
+            max-width: 50rem;
         }
     }
 </style>

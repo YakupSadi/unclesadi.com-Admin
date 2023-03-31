@@ -32,7 +32,6 @@ export default {
 
                 console.log('Folder Deleted')
                 selected.classList.add('fadeOut')
-                this.$store.commit('showAlert', { msg: 'Folder Deleted', color: '#ff0000' })
             })
             .catch((err) => {
                 console.log(err)
@@ -48,7 +47,6 @@ export default {
             .then((res) => {
                 store.commit('getAllFolder')
                 console.log('Folder Updated')
-                this.$store.commit('showAlert', { msg: 'Folder Updated', color: '#800080' })
             })
             .catch((err) => {
                 console.log(err)
@@ -70,10 +68,19 @@ export default {
 
         <div class="item">
             <button>
-                <font-awesome-icon icon="fa-solid fa-check" class="icon" @click="updateFolder" />
+                <font-awesome-icon 
+                    icon="fa-solid fa-check"
+                    @click="updateFolder"
+                    class="icon"
+                />
             </button>
+
             <button>
-                <font-awesome-icon icon="fa-solid fa-trash" class="icon" @click="deleteFolder" />
+                <font-awesome-icon 
+                    icon="fa-solid fa-trash"
+                    @click="deleteFolder" 
+                    class="icon"
+                />
             </button>
         </div>   
     </div>    
@@ -81,70 +88,89 @@ export default {
 
 <style scoped>
     .folder {
-        gap: 1rem;
+        width: 50rem;
         color: #fff;
-        display: grid;
-        padding: 0 .5rem;
-        max-width: 30rem;
-        margin: 0 1rem 1rem;
-        border: 3px solid #fff;
-        grid-template-columns: repeat(4, 1fr);
-    }
-    .folder > .item > input {
-        border: 3px solid transparent;
-    }
-    .folder > .item > input:focus {
-        outline: none;
-        border: 3px solid #fff;
-    }
-    .folder > .item:nth-child(1) { 
-        font-size: 1.2rem;
-        grid-column: 1 / 3; 
-    }
-    .folder > .item:nth-child(2) { 
         display: flex;
-        grid-column: 3 / 4; 
+        padding: 1rem;
+        margin: 1rem 0;
+        flex-wrap: wrap;
+        font-size: 1.4rem;
+        height: fit-content;
         align-items: center;
-        justify-content: center;
-        border: 2px solid #fff;
+        border: 3px solid #FFBF00;
+        justify-content: space-between;
     }
+
+    /* item 1 */
+    .folder > .item:nth-child(1) {
+        width: 100%;
+        height: 4rem;
+        border-radius: 3px;
+        margin-bottom: 1rem;
+        background-color: #111827;
+        border-right: 3px solid #fff;
+    }
+    .folder > .item:nth-child(1) > input {
+        height: 100%;
+        padding: 0 1rem;
+    }
+    .folder > .item:nth-child(1) > input:focus {
+        outline: 3px solid #fff;
+    }
+
+    /* item 2 */
+    .folder > .item:nth-child(2) {
+        width: 7rem;
+        height: 4rem;
+        margin: 0 1rem;
+    }
+    .folder > .item:nth-child(2) > input{
+        height: 100%;
+    }
+
+    /* item 3 */
     .folder > .item:nth-child(3) {
         display: flex;
-        grid-column: 4 / 5;
-        justify-content: space-around;
+        align-items: center;
+        justify-content: space-between;
     }
-    .folder > .item:nth-child(3) > button:nth-child(1) { 
-        padding: 0 .5rem;
-        background-color: green;
+    .folder > .item:nth-child(3) > button {
+        margin: 0 .5rem;
+        font-size: 1.7rem;
+        border-radius: 3px;
+        height: fit-content;
+        padding: .2rem .6rem;
     }
-    .folder > .item:nth-child(3) > button:nth-child(2) { 
-        padding: 0 .5rem;
-        background-color: red;
+    .folder > .item:nth-child(3) > button:nth-child(1) {
+        background-color: #10A19D;
+    }
+    .folder > .item:nth-child(3) > button:nth-child(2) {
+        background-color: #a52a2a;
     }
 
 
-    /**/
+    /* Animation */
     .fadeOut {
         display: none;
     }
 
 
-    /**/
+    /* Media Query */
     @media (min-width: 36em) { 
         .folder {
-            max-width: 14rem;
+            margin: 1rem;
         }
     }
 
     @media (min-width: 48em) { 
         .folder {
-            max-width: 20rem;
+            flex-wrap: nowrap;
+            justify-content: center;
         }
-    }
 
-    @media (min-width: 62em) { 
-        .folder {
-            max-width: 25rem;
+        /* item 1 */
+        .folder > .item:nth-child(1) {
+            margin-bottom: 0;
         }
     }
 </style>
