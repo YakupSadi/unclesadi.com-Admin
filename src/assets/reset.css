@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
 
 :root {
-    --index-height: calc(100vh - 4rem);
+    --index-height: calc(100vh - 5rem);
 }
 
 *,
@@ -48,6 +48,7 @@ html {
 
 body {
     line-height: 1.5;
+    overflow-y: hidden;
     background-color: #1E1E1E;
     font-family: 'Tilt Neon', cursive;
 }

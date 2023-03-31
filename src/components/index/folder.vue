@@ -136,7 +136,7 @@ export default {
     }
     .folder > .item:nth-child(3) > button {
         margin: 0 .5rem;
-        font-size: 1.7rem;
+        font-size: 1.4rem;
         border-radius: 3px;
         height: fit-content;
         padding: .2rem .6rem;

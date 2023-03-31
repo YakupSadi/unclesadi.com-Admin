@@ -46,10 +46,12 @@ export default {
 <style scoped>
     .files {
         display: flex;
+        max-width: 100rem;
         flex-direction: column;
         padding: 8rem 2rem 2rem;
     }
 
+    /* create_button */
     .files > .create_button {
         margin-bottom: 2rem;
     }
@@ -61,6 +63,7 @@ export default {
         border: 3px solid #FFBF00;
     }
 
+    /* file_item */
     .files > .file_item {
         display: flex;
         align-items: center;
@@ -68,7 +71,7 @@ export default {
     }
 
 
-    /**/
+    /* Media Query */
     @media (min-width: 48em) { 
         .files > .file_item {
             flex-wrap: wrap;
@@ -76,6 +79,7 @@ export default {
             justify-content: center;
         } 
 
+        /* create_button */
         .files > .create_button {
             margin-right: 5rem;
         }

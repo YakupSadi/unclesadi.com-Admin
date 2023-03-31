@@ -88,15 +88,13 @@ export default {
             <button @click="passStatus">Change Password</button>
         </div>
 
-        <div class="form"  v-if="move_email">
-            <form @submit.prevent="changeEmail">
+        <div class="form_group">
+            <form @submit.prevent="changeEmail" v-if="move_email">
                 <input type="text" placeholder="Email" v-model="email.new_email" required>
                 <input type="submit" value="Change Email">
             </form>
-        </div>
 
-        <div class="form" v-if="move_pass"> 
-            <form @submit.prevent="changePassword">
+            <form @submit.prevent="changePassword" v-if="move_pass">
                 <input type="password" placeholder="Old Password" v-model="info.old_pass" required>
                 <input type="password" placeholder="New Password" v-model="info.new_pass" required>
                 <input type="submit" value="Change Password">
@@ -110,54 +108,77 @@ export default {
         display: flex;
         max-width: 100rem;
         align-items: center;
+        flex-direction: column;
         padding: 8rem 2rem 2rem;
-        justify-content: center;
         min-height: var(--index-height);
     }
-    
+
+    /* form_buttons */
     .index > .form_buttons {
-        top: 5rem;
         width: 100%;
-        height: 5rem;
+        color: #fff;
         display: flex;
-        position: absolute;
-        align-items: center;
-        justify-content: space-evenly;
+        font-size: 1.2rem;
+        margin: 1rem 0 3rem;
+        justify-content: space-between;
     }
     .index > .form_buttons > button {
-        height: 3rem;
-        color: #fff;
-        padding: 0 1rem;
-        border: 3px solid #fff;
+        width: 100%;
+        margin: 0 .5rem;
+        text-align: center;
+        border-radius: 5px;
+        padding: .5rem 1rem;
+        border: 3px solid #FB2576;
+        background-color: #24315e;
     }
 
-    .index > .form {
-        width: 25rem;
+    /* form_group */    
+    .index > .form_group {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.3rem;
+        border: 3px solid #fff;
+        background-color: #FF7000;
     }
-    .index > .form > form {
+
+    /* form */
+    .index > .form_group > form {
         display: flex;
         align-items: center;
         flex-direction: column;
     }
-    .index > .form > form > input {
-        height: 3rem;
-        margin: 1rem 0;
-        padding: 0 1rem;
+    .index > .form_group > form > input:not(:last-child) {
         color: #fff;
-        font-size: 1.3rem;
+        text-align: center;
+        padding: .5rem 1rem;
+        margin-bottom: 1rem;
+        border: 3px solid #fff;
+        background-color: #1E1E1E;
     }
-    .index > .form > form > input:focus {
-        outline: none;
-    }
-    .index > .form > form > input[type="text"] {
-        border: 3px solid #FB2576;
-    }
-    .index > .form > form > input[type="password"] {
-        border: 3px solid #10A19D;
-    }
-    .index > .form > form > input[type="submit"] {
+    .index > .form_group > form > input:last-child {
+        color: #fff;
         cursor: pointer;
         width: fit-content;
-        border: 3px solid #FFBF00;
+        border-radius: 5px;
+        padding: .5rem 1rem;
+        border: 3px solid #fff;
+        background-color: #10A19D;
+    }
+
+
+    /* Media Query */
+    @media (min-width: 36em) {
+
+    }
+
+    @media (min-width: 48em) {
+        .index > .form_buttons {
+            width: 40rem;
+        }
+
+        /* form_group */
+        .index > .form_group {
+            width: 40rem;
+        }
     }
 </style>

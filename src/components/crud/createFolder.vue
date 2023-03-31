@@ -23,7 +23,6 @@ export default {
             .then((res) => {
                 this.getAllFolder()
                 this.$store.commit('createGlobal')
-                this.$store.commit('showAlert', { msg: 'folder Created', color: '#008000' })
             })
             .catch((err) => {
                 console.log(err)
@@ -39,8 +38,8 @@ export default {
     <div class="create_folder">
         <div class="close_icon">
             <font-awesome-icon 
-                icon="fa-solid fa-xmark"
                 class="icon" 
+                icon="fa-solid fa-xmark"
                 @click="$store.commit('createGlobal')"
             />
         </div>
@@ -49,7 +48,7 @@ export default {
             <input type="text" placeholder="Folder Title" v-model="create.title" required>
 
             <div class="color">
-                <span>Pick a Color: </span>
+                <span>Pick a Color : </span>
                 <input type="color" v-model="create.background" required>
             </div>
             
@@ -61,64 +60,85 @@ export default {
 <style scoped>
     .create_folder {
         z-index: 2;
-        width: 100%;
+        width: 100vw;
         height: 100vh;
         display: flex;
-        padding: 0 2rem;
+        padding: 0 1rem;
         position: absolute;
+        align-items: center;
         flex-direction: column;
         justify-content: center;
         background-color: rgba(0, 0, 0, 0.736);
     }
 
+    /* close_icon */
     .create_folder > .close_icon {
-        margin: 0 auto;
+        width: 100%;
+        display: flex;
+        justify-content: right;
     }
-
     .create_folder > .close_icon > .icon {
-        float: right;
         color: #fff;
         cursor: pointer;
         font-size: 2rem;
-        margin-bottom: 1rem;
-        background-color: #181818;
+        border-radius: 3px;
+        padding: .5rem 1rem;
+        background-color: #CF0A0A;
     }
 
+    /* form */
     .create_folder > form {
         width: 100%;
         display: flex;
-        margin: 0 auto;
-        max-width: 25rem;
+        font-size: 1.4rem;
         align-items: center;
+        padding: 1.5rem 1rem;
         flex-direction: column;
+        border: 3px solid #fff;
+        background-color: #663399;
     }
-    .create_folder > form > .color {
-        width: 70%;
+    .create_folder > form > input:nth-child(1) {
         color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-    }
-    .create_folder > form > input {
-        color: #fff;
-        margin: 1rem 0;
-        font-size: 1.2rem;
         padding: .5rem 1rem;
         border: 3px solid #fff;
-        background-color: #181818;
+        background-color: #1E1E1E;
     }
-    .create_folder > form > input:focus {
+    .create_folder > form > .color {
+        width: 100%;
+        display: flex;
+        margin: 1rem 0;
+        align-items: center;
+        justify-content: center;
+    }
+    .create_folder > form > .color > span {
+        width: 10rem;
+        color: #fff;
+    }
+    .create_folder > form > .color > input {
+        width: 4rem;
+        height: 4rem;
+    }
+    .create_folder > form > input:nth-child(3) {
+        color: #fff;
+        cursor: pointer;
+        border-radius: 3px;
+        padding: .5rem 1rem;
+        background-color: #CF0A0A;
+    }
+    .create_folder > form > input:focus,
+    .create_folder > form > select:focus {
         outline: none;
     }
-    
-    input[type="color"] {
-        width: 2.5rem;
-        height: 2.5rem;
-        cursor: pointer;
-        border-radius: 50% 50%;
-        border: 3px solid #fff;
-    }
-    input[type="submit"] {
-        cursor: pointer;
+
+    /* Media Query */
+    @media (min-width: 36em) {
+        .create_folder > .close_icon {
+            width: 35rem;
+        }
+
+        /* form */
+        .create_folder > form {
+            width: 35rem;
+        }
     }
 </style>

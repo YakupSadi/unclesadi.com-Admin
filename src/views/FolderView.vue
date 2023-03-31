@@ -45,6 +45,7 @@ export default {
 <style scoped>
     .folders {
         display: flex;
+        max-width: 100rem;
         flex-direction: column;
         padding: 8rem 2rem 2rem;
     }

@@ -33,7 +33,6 @@ export default {
             .then((res) => {
                 this.getAllFile()
                 this.$store.commit('createGlobal')
-                this.$store.commit('showAlert', { msg: 'File Created', color: '#008000' })
             })
             .catch((err) => {
                 console.log(err)
@@ -54,8 +53,8 @@ export default {
     <div class="create_file">
         <div class="close_icon">
             <font-awesome-icon 
-                icon="fa-solid fa-xmark"
                 class="icon" 
+                icon="fa-solid fa-xmark"
                 @click="$store.commit('createGlobal')"
             />
         </div>
@@ -78,53 +77,68 @@ export default {
 <style scoped>
     .create_file {
         z-index: 2;
-        width: 100%;
+        width: 100vw;
         height: 100vh;
         display: flex;
-        padding: 0 2rem;
+        padding: 0 1rem;
         position: absolute;
+        align-items: center;
         flex-direction: column;
         justify-content: center;
         background-color: rgba(0, 0, 0, 0.736);
     }
 
+    /* close_icon */
     .create_file > .close_icon {
-        margin: 0 auto;
+        width: 100%;
+        display: flex;
+        justify-content: right;
     }
-
     .create_file > .close_icon > .icon {
-        float: right;
         color: #fff;
         cursor: pointer;
         font-size: 2rem;
-        margin-bottom: 1rem;
-        background-color: #181818;
+        border-radius: 3px;
+        padding: .5rem 1rem;
+        background-color: #CF0A0A;
     }
 
+    /* form */
     .create_file > form {
         display: flex;
-        margin: 0 auto;
-        max-width: 50rem;
+        max-width: 35rem;
+        font-size: 1.4rem;
         align-items: center;
+        padding: 1.5rem 1rem;
         flex-direction: column;
+        border: 3px solid #fff;
+        background-color: #663399;
     }
-    .create_file > form > input {
+    .create_file > form > input:nth-child(1) {
         color: #fff;
-        margin: 1rem 0;
-        font-size: 1.2rem;
         padding: .5rem 1rem;
         border: 3px solid #fff;
-        background-color: #181818;
+        background-color: #1E1E1E;
     }
     .create_file > form > select {
-        color: #fff;
+        width: 100%;
+        display: flex;
         margin: 1rem 0;
         appearance: none;
-        font-size: 1.2rem;
-        width: fit-content;
+        font-size: 1.4rem;
+        text-align: center;
         padding: .5rem 1rem;
-        border: 3px solid #fff;
-        background-color: #181818;
+    }
+    .create_file > form > input:nth-child(3) {
+        color: #fff;
+        margin: 1rem 0 2rem;
+    }
+    .create_file > form > input:nth-child(4) {
+        color: #fff;
+        cursor: pointer;
+        border-radius: 3px;
+        padding: .5rem 1rem;
+        background-color: #CF0A0A;
     }
     .create_file > form > input:focus,
     .create_file > form > select:focus {
@@ -132,8 +146,15 @@ export default {
     }
 
 
-    /**/
-    input[type="submit"] {
-        cursor: pointer;
+    /* Media Query */
+    @media (min-width: 36em) {
+        .create_file > .close_icon {
+            width: 35rem;
+        }
+
+        /* form */
+        .create_file > form {
+            width: 35rem;
+        }
     }
 </style>

@@ -13,6 +13,14 @@ export default createStore({
     mutations: {
         createGlobal(state) {
             state.createPage = !state.createPage
+
+            const body          = document.querySelector('body')
+            if(state.createPage) {
+                body.style.overflow = 'hidden'
+            }
+            else {
+                body.style.overflow = ''
+            }
         },
 
         deleteToken() {
