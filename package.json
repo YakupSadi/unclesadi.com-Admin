@@ -24,9 +24,7 @@
     "vuex": "^4.0.2"
   },
   "devDependencies": {
-    "@editorjs/code": "^2.8.0",
     "@editorjs/inline-code": "^1.4.0",
-    "@editorjs/raw": "^2.4.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "editorjs-inline-font-size-tool": "^1.0.1",
     "editorjs-text-color-plugin": "^2.0.2",
