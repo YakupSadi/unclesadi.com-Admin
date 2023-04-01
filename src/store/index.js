@@ -38,7 +38,7 @@ export default createStore({
                 console.log(err)
             })
         },
-        
+
         getAllFolder(state) {
             axios.get('http://localhost:4000/api/v1/folder')
             .then((res) => {

@@ -49,7 +49,8 @@ export default {
         justify-content: center;
         min-height: var(--index-height);
     }
-    
+
+    /* form */
     .index > .form {
         width: 25rem;
     }

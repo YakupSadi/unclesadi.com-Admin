@@ -220,16 +220,6 @@ export default {
 
 
     /* editorjs */
-    pre {
-        padding: 1rem;
-        border-radius: 3px;
-        white-space: pre-wrap;
-        background-color: #1b1b1b;
-    }
-    [contenteditable] {
-        outline: 0px solid transparent;
-    }
-
     #editorjs {
         width: 90vw;
         font-size: 1.3rem;
@@ -272,6 +262,16 @@ export default {
     .simple-image > img {
         max-width: 100%;
         max-height: 30rem;
+    }
+
+    pre {
+        padding: 1rem;
+        border-radius: 3px;
+        white-space: pre-wrap;
+        background-color: #1b1b1b;
+    }
+    [contenteditable] {
+        outline: 0px solid transparent;
     }
 
 

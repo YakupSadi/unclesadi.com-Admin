@@ -205,16 +205,6 @@ export default {
     }
 
     /* editorjs */
-    pre {
-        padding: 1rem;
-        border-radius: 3px;
-        white-space: pre-wrap;
-        background-color: #1b1b1b;
-    }
-    [contenteditable] {
-        outline: 0px solid transparent;
-    }
-
     #editorjs {
         width: 90vw;
         font-size: 1.2rem;
@@ -256,6 +246,16 @@ export default {
     
     .simple-video__video {
         max-width: 18rem;
+    }
+
+    pre {
+        padding: 1rem;
+        border-radius: 3px;
+        white-space: pre-wrap;
+        background-color: #1b1b1b;
+    }
+    [contenteditable] {
+        outline: 0px solid transparent;
     }
 
 
