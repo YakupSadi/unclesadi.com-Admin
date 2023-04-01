@@ -11,6 +11,7 @@ import InlineCode       from '@editorjs/inline-code'
 import ColorPlugin      from 'editorjs-text-color-plugin'
 import FontSize         from 'editorjs-inline-font-size-tool'
 
+import Code             from '../editorjs/code'
 import SimpleImage      from '../editorjs/image'
 
 
@@ -87,11 +88,12 @@ export default {
                             }       
                         },
 
-                        image      : SimpleImage,
-
                         fontSize   : FontSize,
                         underline  : Underline,
                         inlineCode : InlineCode,
+
+                        code       : Code,
+                        image      : SimpleImage
                     }
                 })
             })
@@ -218,6 +220,16 @@ export default {
 
 
     /* editorjs */
+    pre {
+        padding: 1rem;
+        border-radius: 3px;
+        white-space: pre-wrap;
+        background-color: #1b1b1b;
+    }
+    [contenteditable] {
+        outline: 0px solid transparent;
+    }
+
     #editorjs {
         width: 90vw;
         font-size: 1.3rem;

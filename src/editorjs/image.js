@@ -9,7 +9,7 @@ class SimpleImage {
         }
     }
 
-    constructor({ data, config, api, file }) {
+    constructor({ data, config, api }) {
         this.data   = data
         this.api    = api
         this.config = {
