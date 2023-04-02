@@ -26,12 +26,7 @@ export default {
                 }
             })
             .then((res) => {
-                const data     = this.$store.state.folders
-                const index    = data.findIndex(item => item._id === this.id);
-                const selected = document.querySelectorAll('.folder')[index]
-
                 console.log('Folder Deleted')
-                selected.classList.add('fadeOut')
             })
             .catch((err) => {
                 console.log(err)
@@ -69,17 +64,17 @@ export default {
         <div class="item">
             <button>
                 <font-awesome-icon 
-                    icon="fa-solid fa-check"
-                    @click="updateFolder"
-                    class="icon"
+                    class  ="icon"
+                    icon   ="fa-solid fa-check"
+                    @click ="updateFolder()"
                 />
             </button>
 
             <button>
                 <font-awesome-icon 
-                    icon="fa-solid fa-trash"
-                    @click="deleteFolder" 
-                    class="icon"
+                    class  ="icon"
+                    icon   ="fa-solid fa-trash"
+                    @click ="deleteFolder(), $emit('remove')"
                 />
             </button>
         </div>   
@@ -146,12 +141,6 @@ export default {
     }
     .folder > .item:nth-child(3) > button:nth-child(2) {
         background-color: #a52a2a;
-    }
-
-
-    /* Animation */
-    .fadeOut {
-        display: none;
     }
 
 

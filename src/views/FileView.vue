@@ -14,7 +14,9 @@ export default {
     },
 
     methods: {
-        ...mapMutations(['getAllFile'])
+        ...mapMutations(['getAllFile']),
+
+        deleteItem(index) { this.$store.state.files.splice(index, 1) }
     }
 }
 </script>
@@ -37,6 +39,7 @@ export default {
                 :title  = "file.title"
                 :folder = "file.folder"
                 :image  = "file.image"
+                @remove = "deleteItem(index)"
             />
         </div>
     </div>

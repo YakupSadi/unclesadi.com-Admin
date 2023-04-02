@@ -35,7 +35,7 @@ export default {
         <button>
             <font-awesome-icon 
                 icon="fa-solid fa-trash" 
-                @click="deleteContent" 
+                @click= "$emit('remove'), deleteContent()"
             />
         </button>
     </div>

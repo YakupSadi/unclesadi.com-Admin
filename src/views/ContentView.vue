@@ -41,7 +41,16 @@ export default {
     },
 
     methods: {
-        ...mapMutations(['getAllContent'])
+        ...mapMutations(['getAllContent']),
+
+        deleteContent(index) {
+            this.$store.state.content.splice(index, 1)
+
+            /*
+            const selected = document.querySelectorAll('.content')[index]
+            selected.classList.add('fadeOut')
+            */
+        }
     }
 }
 </script>
@@ -66,10 +75,11 @@ export default {
         <div class="content_list">
             <content 
                 v-for="(content, index) in $store.state.content"
-                :key   = "index"
-                :id    = "content._id"
-                :file  = "content.file"
-                :title = "content.title"
+                :key    = "index"
+                :id     = "content._id"
+                :file   = "content.file"
+                :title  = "content.title"
+                @remove = "deleteContent(index)"
             />
         </div>
     </main>

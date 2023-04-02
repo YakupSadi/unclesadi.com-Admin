@@ -39,12 +39,7 @@ export default {
                 }
             })
             .then((res) => {
-                const data     = this.$store.state.files
-                const index    = data.findIndex(item => item._id === this.id);
-                const selected = document.querySelectorAll('.file')[index]
-
                 console.log('File Deleted')
-                selected.classList.add('fadeOut')
             })
             .catch((err) => {
                 console.log(err)
@@ -75,7 +70,7 @@ export default {
             this.update.image = e.target.files[0]
         },
 
-        ...mapMutations(['getAllFolder']),
+        ...mapMutations(['getAllFolder'])
     }
 }
 </script>
@@ -104,11 +99,11 @@ export default {
 
         <div class="file_status">
             <button>
-                    <font-awesome-icon icon="fa-solid fa-check" @click="updateFile" />
+                    <font-awesome-icon icon="fa-solid fa-check" @click="updateFile()" />
             </button>
 
             <button>
-                <font-awesome-icon icon="fa-solid fa-trash" @click="deleteFile" />
+                <font-awesome-icon icon="fa-solid fa-trash" @click="deleteFile(), $emit('remove')" />
             </button>
         </div>
     </div> 
@@ -195,12 +190,6 @@ export default {
     }
     .file > .file_status > button:nth-child(2) {
         background-color: #a52a2a;
-    }
-
-
-    /* Animation */
-    .fadeOut {
-        display: none;
     }
 
 
