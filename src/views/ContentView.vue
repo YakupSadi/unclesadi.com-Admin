@@ -13,7 +13,7 @@ export default {
         return {
             query    : '',
             result   : [],
-            category : null
+            category : null || 'All'
         }
     },
 
@@ -56,8 +56,8 @@ export default {
             <div class="category">
                 <select v-model="category">
                     <option value="All" selected>All</option>
-                    <option v-for="(content, index) in  $store.state.content" :value="content.file">
-                        {{ content.file }}
+                    <option v-for="(file, index) in $store.state.unique" :value="file">
+                        {{ file }}
                     </option>
                 </select>
             </div>
@@ -113,6 +113,7 @@ export default {
         margin-top: 1rem;
         font-size: 1.2rem;
         width: fit-content;
+        text-align: center;
         border-radius: 3px;
         padding: .5rem 1.5rem;
     }

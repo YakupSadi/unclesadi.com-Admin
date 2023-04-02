@@ -1,7 +1,6 @@
 <script>
 import axios  from 'axios'
 
-
 export default {
     data() {
         return {
@@ -16,12 +15,11 @@ export default {
         sendAdmin() {
             axios.post('http://localhost:4000/api/v1/login', this.login)
             .then((res) => {
-                localStorage.setItem('token', res.data.token)
                 this.$router.push('/')
+                localStorage.setItem('token', res.data.token)
             })
             .catch((err) => {
-                const message = err.response.data.msg
-                console.log(message)
+                console.log(err.response.data.msg)
             })
         },
     }
@@ -33,7 +31,7 @@ export default {
         <div class="form">
             <form @submit.prevent="sendAdmin">
                 <input type="text" placeholder="Email" v-model="login.email" required>
-                <input type="password" placeholder="Password" name="password" v-model="login.password" required>
+                <input type="password" placeholder="Password" v-model="login.password" required>
                 <input type="submit" value="Login">
             </form>
         </div>

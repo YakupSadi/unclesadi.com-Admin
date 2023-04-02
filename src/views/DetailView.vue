@@ -38,6 +38,7 @@ export default {
             .then((res) => {
                 const content   = res.data.data.data
                 this.save.title = res.data.data.title
+                this.save.file  = res.data.data.file
                 const newArr    = content.map(obj => obj)
                 const data      = { blocks: newArr }
 
@@ -139,6 +140,7 @@ export default {
     
         <div class="select_file">
             <select v-model="save.file" required>
+                <option :value="save.file" selected>{{ save.file }}</option>
                 <option v-for="(file, index) in $store.state.files" :value="file.title">
                     {{ file.title}}
                 </option>

@@ -21,11 +21,11 @@ export default {
             },
         }
     },
-    
+
     mounted() {
         this.getAllFolder()
     },
-    
+
     methods: {
         deleteFile() {
             axios.delete(`http://localhost:4000/api/v1/file/${this.id}`, 
@@ -67,7 +67,7 @@ export default {
                 console.log('File Updated')
             })
             .catch((err) => {
-                console.log(err)
+                console.log(err.response.data.msg)
             })
         },
 

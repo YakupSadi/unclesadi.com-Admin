@@ -17,7 +17,7 @@ export default {
             },
         }
     },
-    
+
     methods: {
         deleteFolder() {
             axios.delete(`http://localhost:4000/api/v1/folder/${this.id}`, {
@@ -37,7 +37,7 @@ export default {
                 console.log(err)
             })
         },
-        
+
         updateFolder() {
             axios.put(`http://localhost:4000/api/v1/folder/${this.id}`, this.update, {
                 headers: {
@@ -45,11 +45,11 @@ export default {
                 }
             })
             .then((res) => {
-                store.commit('getAllFolder')
                 console.log('Folder Updated')
+                this.$store.commit('getAllFolder')
             })
             .catch((err) => {
-                console.log(err)
+                console.log(err.response.data.msg)
             })
         }
     }

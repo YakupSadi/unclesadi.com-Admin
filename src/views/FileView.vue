@@ -1,8 +1,7 @@
 <script>
 import { mapMutations } from 'vuex'
-import File             from '../components/index/file.vue';
-import createFile       from '../components/crud/createFile.vue';
-
+import File             from '../components/index/file.vue'
+import createFile       from '../components/crud/createFile.vue'
 
 export default {
     components: {
@@ -13,7 +12,7 @@ export default {
     mounted() {
         this.getAllFile()
     },
-    
+
     methods: {
         ...mapMutations(['getAllFile'])
     }

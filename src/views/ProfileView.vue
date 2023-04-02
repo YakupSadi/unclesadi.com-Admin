@@ -1,7 +1,6 @@
 <script>
 import axios from 'axios'
 
-
 export default {
     data() {
         return {
@@ -167,10 +166,6 @@ export default {
 
 
     /* Media Query */
-    @media (min-width: 36em) {
-
-    }
-
     @media (min-width: 48em) {
         .index > .form_buttons {
             width: 40rem;
