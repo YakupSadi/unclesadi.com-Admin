@@ -118,12 +118,9 @@ export default {
         float: right;
     }
     .main > .search > .category > select {
-        display: block;
         appearance: none;
         margin-top: 1rem;
         font-size: 1.2rem;
-        width: fit-content;
-        text-align: center;
         border-radius: 3px;
         padding: .5rem 1.5rem;
     }

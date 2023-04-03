@@ -21,11 +21,13 @@ export default {
                 }
             })
             .then((res) => {
+                console.log(res.data.msg)
+
                 this.getAllFolder()
                 this.$store.commit('createGlobal')
             })
             .catch((err) => {
-                console.log(err)
+                console.log(err.response.data.msg)
             })
         },
 

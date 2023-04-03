@@ -7,7 +7,6 @@ import List             from '@editorjs/list'
 import Header           from '@editorjs/header'
 import Paragraph        from '@editorjs/paragraph'
 import Underline        from '@editorjs/underline'
-import InlineCode       from '@editorjs/inline-code'
 import ColorPlugin      from 'editorjs-text-color-plugin'
 import FontSize         from 'editorjs-inline-font-size-tool'
 
@@ -44,7 +43,6 @@ export default {
 
                 window.editor = new EditorJS({
                     holder    : 'editorjs',
-                    autofocus : true,
                     data      : data,
 
                     tools: {
@@ -91,15 +89,13 @@ export default {
 
                         fontSize   : FontSize,
                         underline  : Underline,
-                        inlineCode : InlineCode,
 
                         code       : Code,
                         image      : SimpleImage
                     }
                 })
             })
-            .catch((error) => {
-                console.log(error)
+            .catch((err) => {
                 this.$router.push('/404.vue')
             })
         },
@@ -118,14 +114,14 @@ export default {
                     }
                 })
                 .then((res) => {
-                    console.log('Content Updated')
+                    console.log(res.data.msg)
                     this.$router.push('/content')
                 })
                 .catch((err) => {
-                    console.log(err)
+                    console.log(err.response.data.msg)
                 })
-            }).catch((error) => {
-                console.log(error)
+            }).catch((err) => {
+                console.log(err)
             })
         }
     }
@@ -137,7 +133,7 @@ export default {
         <div class="title">
             <input type="text" placeholder="Title" v-model="save.title" required>
         </div>
-    
+
         <div class="select_file">
             <select v-model="save.file" required>
                 <option :value="save.file" selected>{{ save.file }}</option>
@@ -188,11 +184,9 @@ export default {
         justify-content: center;
     }
     .main > .select_file > select {
-        outline: none;
         color: #fff;
         appearance: none;
         font-size: 1.2rem;
-        width: fit-content;
         padding: .5rem 1rem;
         border: 3px solid #10A19D;
         background-color: transparent;
@@ -200,6 +194,10 @@ export default {
     .main > .select_file > select > option {
         background-color: #1E1E1E;
     }
+    .main > .select_file > select:focus {
+        outline: none;
+    }
+
 
     /* editor */
     .main > .editor {
@@ -220,50 +218,51 @@ export default {
         border: 3px solid #FFBF00;
     }
 
-
     /* editorjs */
     #editorjs {
         width: 90vw;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         padding: .5rem 2rem;
         border: 3px solid #00F5FF;
-    }
-
-    .ce-code > textarea {
-        color: #fff;
-        font-size: 1rem;
-        border-color: #1e2128;
-        background-color: #1e2128;
     }
 
     .codex-editor__redactor {
         color: #fff;
     }
-
+    
     .icon--toggler-down {
         display: none;
     }
-
+    
     .ce-inline-toolbar__buttons {
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
     }
-
-    .simple-image {
+    
+    .simple-image,
+    .simple-video  {
         width: 100%;
         display: flex;
+        margin-top: 1rem;
         align-items: center;
         flex-direction: column;
         justify-content: center;
     }
-    .simple-image > input {
+
+    .simple-image > input,
+    .simple-video > input {
         font-size: 1rem;
         width: fit-content;
     }
+
     .simple-image > img {
         max-width: 100%;
         max-height: 30rem;
+    }
+
+    .simple-video__video {
+        max-width: 18rem;
     }
 
     pre {
@@ -272,15 +271,27 @@ export default {
         white-space: pre-wrap;
         background-color: #1b1b1b;
     }
+
     [contenteditable] {
         outline: 0px solid transparent;
     }
 
 
     /* Media Query */
+    @media (min-width: 36em) { 
+        .simple-video__video {
+            max-width: 30rem;
+        }
+    }
+
     @media (min-width: 48em) { 
         #editorjs {
             width: 45rem;
+        }
+
+        /* simple-video__video */
+        .simple-video__video {
+            max-width: 40rem;
         }
     }
 

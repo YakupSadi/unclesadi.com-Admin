@@ -1,7 +1,6 @@
 <script>
 import axios from 'axios'
 
-
 export default {
     props: [
         'id',
@@ -26,10 +25,10 @@ export default {
                 }
             })
             .then((res) => {
-                console.log('Folder Deleted')
+                console.log(res.data.msg)
             })
             .catch((err) => {
-                console.log(err)
+                console.log(err.response.data.msg)
             })
         },
 
@@ -40,7 +39,7 @@ export default {
                 }
             })
             .then((res) => {
-                console.log('Folder Updated')
+                console.log(res.data.msg)
                 this.$store.commit('getAllFolder')
             })
             .catch((err) => {

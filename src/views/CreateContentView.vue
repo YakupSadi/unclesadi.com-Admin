@@ -7,7 +7,6 @@ import List             from '@editorjs/list'
 import Header           from '@editorjs/header'
 import Paragraph        from '@editorjs/paragraph'
 import Underline        from '@editorjs/underline'
-import InlineCode       from '@editorjs/inline-code'
 import ColorPlugin      from 'editorjs-text-color-plugin'
 import FontSize         from 'editorjs-inline-font-size-tool'
 
@@ -36,7 +35,6 @@ export default {
         editor() {
             window.editor = new EditorJS({
                 holder    : 'editorjs',
-                autofocus : true,
 
                 tools: {
                     paragraph: {
@@ -82,7 +80,6 @@ export default {
 
                     fontSize   : FontSize,
                     underline  : Underline,
-                    inlineCode : InlineCode,
 
                     code       : Code,
                     image      : SimpleImage
@@ -104,10 +101,11 @@ export default {
                     }
                 })
                 .then((res) => {
+                    console.log(res.data.msg)
                     this.$router.push('/content')
                 })
                 .catch((err) => {
-                    console.log(err)
+                    console.log(err.response.data.msg)
                 })
             }).catch((error) => {
                 console.log(error)
@@ -230,20 +228,23 @@ export default {
     .simple-video  {
         width: 100%;
         display: flex;
+        margin-top: 1rem;
         align-items: center;
         flex-direction: column;
         justify-content: center;
     }
+
     .simple-image > input,
     .simple-video > input {
         font-size: 1rem;
         width: fit-content;
     }
+
     .simple-image > img {
         max-width: 100%;
         max-height: 30rem;
     }
-    
+
     .simple-video__video {
         max-width: 18rem;
     }
@@ -254,6 +255,7 @@ export default {
         white-space: pre-wrap;
         background-color: #1b1b1b;
     }
+
     [contenteditable] {
         outline: 0px solid transparent;
     }
@@ -270,6 +272,8 @@ export default {
         #editorjs {
             width: 45rem;
         }
+
+        /* simple-video__video */
         .simple-video__video {
             max-width: 40rem;
         }

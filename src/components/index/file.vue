@@ -39,10 +39,10 @@ export default {
                 }
             })
             .then((res) => {
-                console.log('File Deleted')
+                console.log(res.data.msg)
             })
             .catch((err) => {
-                console.log(err)
+                console.log(err.response.data.msg)
             })
         },
 
@@ -59,7 +59,7 @@ export default {
                 }
             })
             .then((res) => {
-                console.log('File Updated')
+                console.log(res.data.msg)
             })
             .catch((err) => {
                 console.log(err.response.data.msg)

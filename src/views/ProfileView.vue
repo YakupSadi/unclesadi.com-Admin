@@ -33,7 +33,7 @@ export default {
                 this.email.new_email = res.data.info
             })
             .catch((err) => {
-                console.log(err)
+                console.log(err.response.data.msg)
             })
         },
 
@@ -44,11 +44,13 @@ export default {
                 }
             })
             .then((res) => {
+                console.log(res.data.msg)
+
                 this.$router.push('/login')
                 this.$store.commit('deleteToken')
             })
             .catch((err) => {
-                console.log(err)
+                console.log(err.response.data.msg)
             })
         },
 
@@ -59,11 +61,13 @@ export default {
                 }
             })
             .then((res) => {
+                console.log(res.data.msg)
+
                 this.$router.push('/login')
                 this.$store.commit('deleteToken')
             })
             .catch((err) => {
-                console.log(err)
+                console.log(err.response.data.msg)
             })
         },
 
@@ -89,7 +93,7 @@ export default {
 
         <div class="form_group">
             <form @submit.prevent="changeEmail" v-if="move_email">
-                <input type="text" placeholder="Email" v-model="email.new_email" required>
+                <input type="email" placeholder="Email" v-model="email.new_email" required>
                 <input type="submit" value="Change Email">
             </form>
 

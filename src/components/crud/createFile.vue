@@ -17,7 +17,7 @@ export default {
     mounted() {
         this.getAllFolder()
     },
-    
+
     methods: {
         createFile() {
             const formData = new FormData()
@@ -31,14 +31,16 @@ export default {
                 }
             })
             .then((res) => {
+                console.log(res.data.msg)
+
                 this.getAllFile()
                 this.$store.commit('createGlobal')
             })
             .catch((err) => {
-                console.log(err)
+                console.log(err.response.data.msg)
             })
         },
-        
+
         createImage(e) {
             this.create.image = e.target.files[0]
         },
@@ -61,7 +63,7 @@ export default {
 
         <form @submit.prevent="createFile">
             <input type="text" placeholder="File Title" v-model="create.title" required>
-            
+
             <select v-model="create.folder" required>
                 <option v-for="(folder, index) in $store.state.folders" :value="folder.title">
                     {{ folder.title}}

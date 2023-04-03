@@ -1,7 +1,6 @@
 <script>
 import axios from 'axios'
 
-
 export default {
     props: [
         'id',
@@ -16,10 +15,10 @@ export default {
                 }
             })
             .then((res) => {
-                console.log('Content Deleted')
+                console.log(res.data.msg)
             })
             .catch((err) => {
-                console.log(err)
+                console.log(err.response.data.msg)
             })
         }
     }

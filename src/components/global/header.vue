@@ -1,7 +1,6 @@
 <script>
 import Menu from '../menu/menu.vue'
 
-
 export default {
     components: {
         Menu
@@ -22,7 +21,7 @@ export default {
     beforeDestroy() {
         window.removeEventListener('resize', this.handleResize);
     },
-    
+
     methods: {
         preventDefault(e) {
             e.preventDefault()
@@ -32,7 +31,7 @@ export default {
             const body          = document.querySelector('body')
             body.style.overflow = ''
         },
-        
+
         disableScroll() {
             const body          = document.querySelector('body')
             body.style.overflow = 'hidden'
@@ -45,7 +44,7 @@ export default {
                 this.enableScroll()
             }
         },
-        
+
         showMenu() {
             this.menu = !this.menu
             this.handleResize()
@@ -133,6 +132,7 @@ export default {
             padding: 0 2rem;
         }
 
+        /* transition */
         .transition-enter-from,
         .transition-leave-to {
             margin-left: -25rem;
