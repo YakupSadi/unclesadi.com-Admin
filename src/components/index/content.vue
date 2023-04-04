@@ -31,11 +31,8 @@ export default {
             {{ title }}
         </RouterLink>
 
-        <button>
-            <font-awesome-icon 
-                icon="fa-solid fa-trash" 
-                @click= "$emit('remove'), deleteContent()"
-            />
+        <button @click= "$emit('remove'), deleteContent()">
+            <font-awesome-icon icon="fa-solid fa-trash" />
         </button>
     </div>
 </template>

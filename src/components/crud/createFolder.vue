@@ -38,12 +38,8 @@ export default {
 
 <template>
     <div class="create_folder">
-        <div class="close_icon">
-            <font-awesome-icon 
-                class="icon" 
-                icon="fa-solid fa-xmark"
-                @click="$store.commit('createGlobal')"
-            />
+        <div class="close_icon" @click="$store.commit('createGlobal')">
+            <font-awesome-icon class="icon" icon="fa-solid fa-xmark" />
         </div>
 
         <form @submit.prevent="createFolder">

@@ -37,7 +37,9 @@ export default {
                 this.$store.commit('createGlobal')
             })
             .catch((err) => {
-                console.log(err.response.data.msg)
+                if(err.response.status === 500) {
+                    console.log('Please Select an Image')
+                }
             })
         },
 
@@ -53,12 +55,8 @@ export default {
 
 <template>
     <div class="create_file">
-        <div class="close_icon">
-            <font-awesome-icon 
-                class="icon" 
-                icon="fa-solid fa-xmark"
-                @click="$store.commit('createGlobal')"
-            />
+        <div class="close_icon" @click="$store.commit('createGlobal')">
+            <font-awesome-icon class="icon" icon="fa-solid fa-xmark" />
         </div>
 
         <form @submit.prevent="createFile">

@@ -61,20 +61,12 @@ export default {
         </div>
 
         <div class="item">
-            <button>
-                <font-awesome-icon 
-                    class  ="icon"
-                    icon   ="fa-solid fa-check"
-                    @click ="updateFolder()"
-                />
+            <button @click ="updateFolder()">
+                <font-awesome-icon class="icon" icon="fa-solid fa-check" />
             </button>
 
-            <button>
-                <font-awesome-icon 
-                    class  ="icon"
-                    icon   ="fa-solid fa-trash"
-                    @click ="deleteFolder(), $emit('remove')"
-                />
+            <button @click ="deleteFolder(), $emit('remove')">
+                <font-awesome-icon class="icon" icon="fa-solid fa-trash" />
             </button>
         </div>   
     </div>    

@@ -6,9 +6,7 @@ import router          from "../router"
 export default createStore({
     state: {
         files      : null,
-        unique     : null,
         folders    : null,
-        content    : null,
         createPage : false
     },
 
@@ -54,22 +52,6 @@ export default createStore({
             axios.get('http://localhost:4000/api/v1/file')
             .then((res) => {
                 state.files = res.data.data
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-        },
-
-        getAllContent(state) {
-            axios.get('http://localhost:4000/api/v1/content')
-            .then((res) => {
-                state.content = res.data.data
-
-                const unique = res.data.data.filter((data, index, array) => 
-                    array.findIndex(file => file.file === data.file) === index)
-                        .map(user => user.file)
-
-                state.unique = unique
             })
             .catch((err) => {
                 console.log(err)

@@ -1,7 +1,6 @@
 <script>
-import { mapMutations } from 'vuex'
-import axios            from 'axios'
-import Content          from '../components/index/content.vue'
+import axios   from 'axios'
+import Content from '../components/index/content.vue'
 
 
 export default {
@@ -12,39 +11,38 @@ export default {
     data() {
         return {
             query    : '',
-            result   : [],
-            category : null || 'All'
+            category : 'All',
+
+            content  : [],
+            unique   : null
         }
     },
 
     mounted() {
-        this.getAllContent()
+        axios.get('http://localhost:4000/api/v1/content')
+        .then((res) => {
+            this.content = res.data.data
+
+            const unique = res.data.data.filter((data, index, array) => 
+                array.findIndex(file => file.file === data.file) === index)
+                    .map(file => file.file)
+
+            this.unique = unique
+        })
+        .catch((err) => {
+            console.log(err)
+        })
     },
 
-    watch: {
-        query: function() {
-            if(this.query) {
-                axios.get('http://localhost:4000/api/v1/search', { 
-                    params: { 
-                        word   : this.query, 
-                        filter : this.category 
-                    }
-                })
-                .then((res) => {
-                    this.result = res.data.results
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-            }
+    computed: {
+        filteredContent() {
+            return this.content.filter(post => post.title.toLowerCase().includes(this.query.toLowerCase()))
         }
     },
 
     methods: {
-        ...mapMutations(['getAllContent']),
-
         deleteContent(index) {
-            this.$store.state.content.splice(index, 1)
+            this.content.splice(index, 1)
 
             /*
             const selected = document.querySelectorAll('.content')[index]
@@ -65,7 +63,7 @@ export default {
             <div class="category">
                 <select v-model="category">
                     <option value="All" selected>All</option>
-                    <option v-for="(file, index) in $store.state.unique" :value="file">
+                    <option v-for="(file, index) in unique" :value="file">
                         {{ file }}
                     </option>
                 </select>
@@ -74,7 +72,7 @@ export default {
 
         <div class="content_list">
             <content 
-                v-for="(content, index) in $store.state.content"
+                v-for="(content, index) in filteredContent"
                 :key    = "index"
                 :id     = "content._id"
                 :file   = "content.file"

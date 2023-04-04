@@ -98,12 +98,12 @@ export default {
         </div>
 
         <div class="file_status">
-            <button>
-                    <font-awesome-icon icon="fa-solid fa-check" @click="updateFile()" />
+            <button @click="updateFile()">
+                    <font-awesome-icon icon="fa-solid fa-check" />
             </button>
 
-            <button>
-                <font-awesome-icon icon="fa-solid fa-trash" @click="deleteFile(), $emit('remove')" />
+            <button  @click="deleteFile(), $emit('remove')">
+                <font-awesome-icon icon="fa-solid fa-trash" />
             </button>
         </div>
     </div> 
