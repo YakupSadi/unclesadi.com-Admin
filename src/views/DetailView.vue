@@ -2,6 +2,7 @@
 import { mapMutations } from 'vuex'
 import axios            from 'axios'
 import EditorJS         from '@editorjs/editorjs'
+import Alert            from '../components/global/alert.vue'
 
 import List             from '@editorjs/list'
 import Header           from '@editorjs/header'
@@ -118,7 +119,9 @@ export default {
                     this.$router.push('/content')
                 })
                 .catch((err) => {
-                    console.log(err.response.data.msg)
+                    const color   = 'red'
+                    const message = err.response.data.msg
+                    this.$store.commit('triggerAlert', { message, color })
                 })
             }).catch((err) => {
                 console.log(err)
@@ -131,11 +134,11 @@ export default {
 <template>
     <main class="main">
         <div class="title">
-            <input type="text" placeholder="Title" v-model="save.title" required>
+            <input type="text" placeholder="Title" v-model="save.title">
         </div>
 
         <div class="select_file">
-            <select v-model="save.file" required>
+            <select v-model="save.file">
                 <option :value="save.file" selected>{{ save.file }}</option>
                 <option v-for="(file, index) in $store.state.files" :value="file.title">
                     {{ file.title}}
@@ -148,6 +151,12 @@ export default {
             <button @click="saveEdit">Save</button>
         </div>
     </main>
+
+    <Alert
+        :msg   ="this.$store.state.alertMsg"
+        :color ="this.$store.state.alertClr"
+        :alert ="this.$store.state.alertBtn"
+    />
 </template>
 
 <style>
