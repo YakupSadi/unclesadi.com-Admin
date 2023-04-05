@@ -1,12 +1,14 @@
 <script>
 import { mapMutations } from 'vuex'
 import File             from '../components/index/file.vue'
+import Alert            from '../components/global/alert.vue'
 import createFile       from '../components/crud/createFile.vue'
 
 
 export default {
     components: {
         File,
+        Alert,
         createFile
     },
 
@@ -44,6 +46,12 @@ export default {
             />
         </div>
     </div>
+
+    <Alert
+        :msg   ="this.$store.state.alertMsg"
+        :color ="this.$store.state.alertClr"
+        :alert ="this.$store.state.alertBtn"
+    />
 </template>
 
 <style scoped>

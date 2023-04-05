@@ -39,11 +39,14 @@ export default {
                 }
             })
             .then((res) => {
-                console.log(res.data.msg)
-                this.$store.commit('getAllFolder')
+                const color   = 'green'
+                const message = res.data.msg
+                this.$store.commit('triggerAlert', { message, color }) 
             })
             .catch((err) => {
-                console.log(err.response.data.msg)
+                const color   = 'red'
+                const message = err.response.data.msg
+                this.$store.commit('triggerAlert', { message, color }) 
             })
         }
     }

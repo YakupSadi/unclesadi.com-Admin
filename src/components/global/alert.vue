@@ -1,8 +1,9 @@
 <script>
 export default {
     props: [
+        'msg',
+        'color',
         'alert',
-        'msg'
     ],
 
     data() {
@@ -33,7 +34,7 @@ export default {
 <template>
     <Transition name="fade">
         <div class="alert" v-show="getAlert">
-            <span>{{ msg }}</span>
+            <span :style="{ backgroundColor: color }">{{ msg }}</span>
         </div>
     </Transition>
 </template>
@@ -53,11 +54,10 @@ export default {
     }
     .alert > span {
         width: 100%;
-        height: 4rem;
         text-align: center;
         border-radius: 3px;
-        padding: .9rem 2rem 0;
-        background-color: red;
+        height: fit-content;
+        padding: .9rem 2rem;
     }
 
 

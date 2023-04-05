@@ -27,7 +27,9 @@ export default {
                 this.$store.commit('createGlobal')
             })
             .catch((err) => {
-                console.log(err.response.data.msg)
+                const color   = 'red'
+                const message = err.response.data.msg
+                this.$store.commit('triggerAlert', { message, color })
             })
         },
 

@@ -59,10 +59,20 @@ export default {
                 }
             })
             .then((res) => {
-                console.log(res.data.msg)
+                const color   = 'green'
+                const message = res.data.msg
+                this.$store.commit('triggerAlert', { message, color }) 
             })
             .catch((err) => {
-                console.log(err.response.data.msg)
+                if(err.response.status === 500) {
+                    const color   = 'red'
+                    const message = 'Please Upload an Image'
+                    this.$store.commit('triggerAlert', { message, color }) 
+                } else {
+                    const color   = 'red'
+                    const message = err.response.data.msg
+                    this.$store.commit('triggerAlert', { message, color }) 
+                }
             })
         },
 

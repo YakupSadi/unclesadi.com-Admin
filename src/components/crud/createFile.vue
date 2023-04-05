@@ -7,7 +7,7 @@ export default {
     data() {
         return {
             create: {
-                title  : null,
+                title  : '',
                 image  : null,
                 folder : null
             }
@@ -38,7 +38,13 @@ export default {
             })
             .catch((err) => {
                 if(err.response.status === 500) {
-                    console.log('Please Select an Image')
+                    const color   = 'red'
+                    const message = 'Please Select an Image'
+                    this.$store.commit('triggerAlert', { message, color }) 
+                } else {
+                    const color   = 'red'
+                    const message = err.response.data.msg
+                    this.$store.commit('triggerAlert', { message, color }) 
                 }
             })
         },
@@ -68,7 +74,7 @@ export default {
                 </option>
             </select>
 
-            <input type="file" @change="createImage" name="image" required>
+            <input type="file" @change="createImage" name="image">
             <input type="submit" value="Save">
         </form>
     </div>    
