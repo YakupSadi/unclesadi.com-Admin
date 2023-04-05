@@ -210,6 +210,11 @@ export default {
         border: 3px solid #00F5FF;
     }
 
+    .ce-block__content,
+    .ce-toolbar__content {
+        max-width: unset;
+    }
+
     .codex-editor__redactor {
         color: #fff;
     }
@@ -228,7 +233,7 @@ export default {
     .simple-video  {
         width: 100%;
         display: flex;
-        margin-top: 1rem;
+        margin: 2rem 0;
         align-items: center;
         flex-direction: column;
         justify-content: center;
@@ -242,7 +247,6 @@ export default {
 
     .simple-image > img {
         max-width: 100%;
-        max-height: 30rem;
     }
 
     .simple-video__video {
@@ -281,7 +285,7 @@ export default {
 
     @media (min-width: 62em) { 
         #editorjs {
-            width: 50rem;
+            width: 60rem;
         }
     }
 </style>

@@ -15,6 +15,7 @@ export default {
     watch: {
         alert() {
             this.disableF = true
+
             if(this.disableF) {
                 this.disableF = false
                 this.getAlert = !this.getAlert

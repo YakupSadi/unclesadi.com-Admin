@@ -258,7 +258,6 @@ export default {
 
     .simple-image > img {
         max-width: 100%;
-        max-height: 30rem;
     }
 
     .simple-video__video {
@@ -297,7 +296,7 @@ export default {
 
     @media (min-width: 62em) { 
         #editorjs {
-            width: 50rem;
+            width: 60rem;
         }
     }
 </style>

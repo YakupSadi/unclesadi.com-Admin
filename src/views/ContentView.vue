@@ -36,7 +36,15 @@ export default {
 
     computed: {
         filteredContent() {
-            return this.content.filter(post => post.title.toLowerCase().includes(this.query.toLowerCase()))
+            if(this.category === 'All') {
+                return this.content.filter(post => post.title.toLowerCase().includes(this.query.toLowerCase()))
+            } else {
+                const a = this.content.filter(map => map.file === this.category)
+
+                a.forEach(item => { return item })
+
+                return a.filter(post => post.title.toLowerCase().includes(this.query.toLowerCase()))
+            }
         }
     },
 
