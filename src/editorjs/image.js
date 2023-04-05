@@ -21,8 +21,14 @@ class SimpleImage {
         const container = document.createElement('div')
         container.classList.add('simple-image')
 
+        const coverImage = document.createElement('div')
+        coverImage.classList.add('cover_image')
+        coverImage.textContent = 'Select an Image'
+
         const img = document.createElement('img')
         img.classList.add('simple-image__img')
+
+        container.appendChild(coverImage)
 
         img.src = this.data.url
 

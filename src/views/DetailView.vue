@@ -284,6 +284,24 @@ export default {
         outline: 0px solid transparent;
     }
 
+    .simple-image > input {
+        width: 80%;
+        height: 100%;
+        cursor: pointer;
+        position: absolute;
+    }
+    .cover_image {
+        z-index: 1;
+        width: 80%;
+        height: 5rem;
+        display: flex;
+        border-radius: 3px;
+        align-items: center;
+        pointer-events: none;
+        justify-content: center;
+        background-color: #FB2576;
+    }
+
 
     /* Media Query */
     @media (min-width: 36em) { 
