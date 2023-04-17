@@ -1,7 +1,12 @@
 <script>
-import axios  from 'axios'
+import axios from 'axios'
+import Alert from '../components/global/alert.vue'
 
 export default {
+    components: {
+        Alert
+    },
+
     data() {
         return {
             login: {
@@ -19,7 +24,9 @@ export default {
                 localStorage.setItem('token', res.data.token)
             })
             .catch((err) => {
-                console.log(err.response.data.msg)
+                const color   = 'red'
+                const message = err.response.data.msg
+                this.$store.commit('triggerAlert', { message, color })
             })
         },
     }
@@ -36,6 +43,12 @@ export default {
             </form>
         </div>
     </main>
+
+    <Alert
+        :msg   ="this.$store.state.alertMsg"
+        :color ="this.$store.state.alertClr"
+        :alert ="this.$store.state.alertBtn"
+    />
 </template>
 
 <style scoped>
